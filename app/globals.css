@@ -2,32 +2,182 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   DESIGN TOKENS - EARLYSTEPS (Calm Pediatric Clinic Theme)
+   Guided by ui-ux-pro-max: Warm, gentle, trustworthy, sensory-friendly
+   ========================================================================== */
+
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --primary: #0891b2;
-  --primary-foreground: #ffffff;
-  --accent: #059669;
-  --accent-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --border: #e2e8f0;
+  /* Colors */
+  --background: #FAF8F5;          /* Warm linen / soft off-white */
+  --foreground: #1E293B;          /* Deep slate (no pure black) */
+  --foreground-muted: #475569;    /* Muted slate text (meets 4.5:1 on light) */
+
+  --card: #FFFFFF;                /* Pure clean card surface */
+  --card-foreground: #1E293B;
+  
+  --primary: #0D5C63;             /* Deep medical teal (calm, authoritative, AA compliant) */
+  --primary-hover: #09474D;
+  --primary-foreground: #FFFFFF;
+  --primary-soft: #E8F3F4;        /* Soft teal wash */
+
+  --accent-warm: #B84E28;         /* Rich warm terracotta (meets 4.5:1 AA contrast on light) */
+  --accent-warm-soft: #FDF2EE;
+  --accent-warm-foreground: #FFFFFF;
+
+  --muted: #F2EFEA;               /* Warm light gray for tags/inputs */
+  --muted-foreground: #64748B;
+  --border: #E8E5DF;              /* Soft warm border */
+  --border-subtle: #F0EDE8;
+  --ring: #0D5C63;
+
+  /* Risk Classification Tokens (ONLY for screening results) */
+  --risk-low: #0D7A55;            /* Calm forest green */
+  --risk-low-bg: #EAF7F1;
+  --risk-low-border: #A7DFCA;
+  
+  --risk-med: #B45309;            /* Warm amber */
+  --risk-med-bg: #FEF3C7;
+  --risk-med-border: #FCD34D;
+  
+  --risk-high: #BE123C;           /* Clinical rose/coral */
+  --risk-high-bg: #FFF1F2;
+  --risk-high-border: #FECDD3;
+
+  /* Typography Scale Tokens (Strictly 14px minimum, body 17-18px) */
+  --font-size-sm: 0.875rem;       /* 14px (minimum allowed) */
+  --font-size-base: 1.0625rem;    /* 17px base body */
+  --font-size-lg: 1.1875rem;      /* 19px */
+  --font-size-xl: 1.375rem;       /* 22px */
+  --font-size-2xl: 1.75rem;       /* 28px */
+  --font-size-3xl: 2.25rem;       /* 36px */
+  --font-size-4xl: 2.75rem;       /* 44px display */
+  --font-size-5xl: 3.25rem;       /* 52px hero */
+
+  --line-height-body: 1.6;
+  --line-height-heading: 1.15;
+
+  /* Radii (Soft, friendly curvature) */
+  --radius-sm: 0.5rem;    /* 8px */
+  --radius-md: 0.75rem;   /* 12px */
+  --radius-lg: 1rem;      /* 16px */
+  --radius-xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* Shadows (Max 2 levels, subtle & soft) */
+  --shadow-subtle: 0 1px 3px 0 rgba(30, 41, 59, 0.05), 0 1px 2px -1px rgba(30, 41, 59, 0.05);
+  --shadow-card: 0 4px 20px -2px rgba(30, 41, 59, 0.06), 0 2px 6px -1px rgba(30, 41, 59, 0.03);
+  --shadow-hover: 0 8px 24px -4px rgba(30, 41, 59, 0.09), 0 4px 8px -2px rgba(30, 41, 59, 0.04);
 }
 
 .dark {
-  --background: #0b1120;
-  --foreground: #f1f5f9;
-  --card: #131d31;
-  --card-foreground: #f1f5f9;
-  --primary: #06b6d4;
-  --primary-foreground: #081a24;
-  --accent: #10b981;
-  --accent-foreground: #032115;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --border: #24344d;
+  --background: #141E24;          /* Deep calm slate / spruce */
+  --foreground: #F1F5F9;
+  --foreground-muted: #94A3B8;
+
+  --card: #1B2830;                /* Slate-card background */
+  --card-foreground: #F1F5F9;
+
+  --primary: #2DD4BF;             /* Soft mint/teal for dark mode */
+  --primary-hover: #14B8A6;
+  --primary-foreground: #042F2E;
+  --primary-soft: #0F3338;
+
+  --accent-warm: #F49D85;
+  --accent-warm-soft: #2D1E1B;
+  --accent-warm-foreground: #1E0F0A;
+
+  --muted: #24343E;
+  --muted-foreground: #94A3B8;
+  --border: #2C3E4A;
+  --border-subtle: #22323D;
+  --ring: #2DD4BF;
+
+  --risk-low: #34D399;
+  --risk-low-bg: #064E3B;
+  --risk-low-border: #047857;
+
+  --risk-med: #FBBF24;
+  --risk-med-bg: #78350F;
+  --risk-med-border: #B45309;
+
+  --risk-high: #FB7185;
+  --risk-high-bg: #881337;
+  --risk-high-border: #BE123C;
+
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   GLOBAL RESET & ACCESSIBILITY RULES
+   ========================================================================== */
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-sans), Inter, system-ui, -apple-system, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Heading Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Plus Jakarta Sans, var(--font-sans), sans-serif;
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+/* Hindi / Marathi Devanagari typography override when active */
+[lang="hi"], [lang="mr"], .font-hindi {
+  font-family: var(--font-devanagari), Noto Sans Devanagari, var(--font-sans), sans-serif;
+  line-height: 1.7;
+}
+
+/* Enforce absolute minimum 14px across all text elements */
+small, .text-xs, [class*="text-[10px]"], [class*="text-[11px]"], [class*="text-[12px]"], [class*="text-[13px]"] {
+  font-size: 0.875rem !important; /* 14px minimum per prompt */
+  line-height: 1.4 !important;
+}
+
+/* Accessible tap targets: minimum 44px (buttons min 48px per prompt) */
+button, a.btn, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+  min-height: 44px;
+}
+
+button.btn-primary, button.btn-secondary, a.btn-primary, a.btn-secondary {
+  min-height: 48px;
+}
+
+/* Clear visible focus rings for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Card hover animation (Lift 2px + shadow-hover) */
+.card-hover {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Sensory-friendly calm transitions & reduced motion */
@@ -38,23 +188,4 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-body {
-  color: var(--foreground);
-  background-color: var(--background);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-
-/* Accessible tap targets for all interactive elements */
-button, a, input, select, textarea {
-  touch-action: manipulation;
-}
-
-/* Focus visible styles for keyboard accessibility */
-:focus-visible {
-  outline: 3px solid #0891b2;
-  outline-offset: 2px;
 }

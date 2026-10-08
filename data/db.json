@@ -35,6 +35,15 @@
       "role": "PARENT",
       "createdAt": "2026-10-08T14:54:45.964Z",
       "updatedAt": "2026-10-08T14:54:45.964Z"
+    },
+    {
+      "id": "usr_muzoohr1_632k5v",
+      "email": "parent_1791472847926@earlysteps.org",
+      "name": "Rohan Verma",
+      "passwordHash": "Password@123",
+      "role": "PARENT",
+      "createdAt": "2026-10-08T15:20:49.885Z",
+      "updatedAt": "2026-10-08T15:20:49.885Z"
     }
   ],
   "consents": [
@@ -57,6 +66,16 @@
       "ipAddress": "::1",
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
       "consentedAt": "2026-10-08T14:54:45.964Z"
+    },
+    {
+      "id": "cns_muzoohr1_nqg40h",
+      "userId": "usr_muzoohr1_632k5v",
+      "version": "1.0.0-dpdp2023",
+      "agreedToDPDP": true,
+      "termsAccepted": true,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+      "consentedAt": "2026-10-08T15:20:49.885Z"
     }
   ],
   "children": [
@@ -114,6 +133,39 @@
       "gestationalWeeks": null,
       "createdAt": "2026-10-08T14:58:13.585Z",
       "updatedAt": "2026-10-08T14:58:13.585Z"
+    },
+    {
+      "id": "chd_muzooidd_0kda9x",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Vivaan",
+      "dateOfBirth": "2025-02-08T00:00:00.000Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T15:20:50.689Z",
+      "updatedAt": "2026-10-08T15:20:50.689Z"
+    },
+    {
+      "id": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Vivaan",
+      "dateOfBirth": "2025-02-08T00:00:00.000Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T15:22:27.557Z",
+      "updatedAt": "2026-10-08T15:22:27.557Z"
+    },
+    {
+      "id": "chd_muzp0f2v_zcnpre",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Vivaan",
+      "dateOfBirth": "2025-02-08T00:00:00.000Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T15:30:06.295Z",
+      "updatedAt": "2026-10-08T15:30:06.296Z"
     }
   ],
   "screenings": [
@@ -188,6 +240,126 @@
       "clinicianNotes": null,
       "createdAt": "2026-10-08T14:58:51.754Z",
       "completedAt": null
+    },
+    {
+      "id": "scr_muzooioz_1w345b",
+      "childId": "chd_muzooidd_0kda9x",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 0,
+      "riskLevel": "LOW",
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:20:51.107Z",
+      "completedAt": "2026-10-08T15:20:59.336Z"
+    },
+    {
+      "id": "scr_muzoqlfo_brjhmh",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 0,
+      "riskLevel": "LOW",
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:22:27.972Z",
+      "completedAt": "2026-10-08T15:22:36.137Z"
+    },
+    {
+      "id": "scr_muzor9p5_ua7pel",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:22:59.417Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzot1xq_t2nllb",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:24:22.670Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzot88p_3fan79",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:24:30.841Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzotevl_o40teu",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:24:39.441Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzotlot_o9uuys",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:24:48.269Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzotspd_8pjfsr",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:24:57.361Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzotzrs_jj2z6k",
+      "childId": "chd_muzoql45_xrbrv9",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:25:06.520Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzp0fes_9c33t5",
+      "childId": "chd_muzp0f2v_zcnpre",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 0,
+      "riskLevel": "LOW",
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T15:30:06.724Z",
+      "completedAt": "2026-10-08T15:30:14.875Z"
     }
   ],
   "answers": [
@@ -646,6 +818,462 @@
       "response": "YES",
       "scoreValue": 0,
       "createdAt": "2026-10-08T14:58:21.975Z"
+    },
+    {
+      "id": "ans_muzooirl_rfe1al",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:51.201Z"
+    },
+    {
+      "id": "ans_muzooj2k_6zuyaw",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 2,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:51.596Z"
+    },
+    {
+      "id": "ans_muzoojct_hbv714",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 3,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:51.965Z"
+    },
+    {
+      "id": "ans_muzoojpp_z3uejc",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 4,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:52.429Z"
+    },
+    {
+      "id": "ans_muzook0d_q9096r",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 5,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:52.813Z"
+    },
+    {
+      "id": "ans_muzookac_f0soxi",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 6,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:53.172Z"
+    },
+    {
+      "id": "ans_muzooknw_6ih14u",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 7,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:53.660Z"
+    },
+    {
+      "id": "ans_muzool0a_ffxvgt",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:54.106Z"
+    },
+    {
+      "id": "ans_muzoolde_nv5e85",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 9,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:54.578Z"
+    },
+    {
+      "id": "ans_muzoolqa_phlrkr",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:55.042Z"
+    },
+    {
+      "id": "ans_muzoom2t_i5iosg",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 11,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:55.493Z"
+    },
+    {
+      "id": "ans_muzoomcv_dnrb31",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 12,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:55.855Z"
+    },
+    {
+      "id": "ans_muzoommm_zegfj3",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 13,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:56.206Z"
+    },
+    {
+      "id": "ans_muzoomyn_v6e83b",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:56.639Z"
+    },
+    {
+      "id": "ans_muzoonb7_c9j738",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 15,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:57.091Z"
+    },
+    {
+      "id": "ans_muzoonnl_i56lzh",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:57.537Z"
+    },
+    {
+      "id": "ans_muzooo03_nf85ut",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:57.987Z"
+    },
+    {
+      "id": "ans_muzooocb_hz131u",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:58.427Z"
+    },
+    {
+      "id": "ans_muzoooo9_jqopwb",
+      "screeningId": "scr_muzooioz_1w345b",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:20:58.857Z"
+    },
+    {
+      "id": "ans_muzoqlia_68gmj7",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:28.066Z"
+    },
+    {
+      "id": "ans_muzoqlst_bv88qa",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 2,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:28.445Z"
+    },
+    {
+      "id": "ans_muzoqm3h_e5o6mg",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 3,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:28.829Z"
+    },
+    {
+      "id": "ans_muzoqmgg_xeg60y",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 4,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:29.296Z"
+    },
+    {
+      "id": "ans_muzoqmqk_fr8m57",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 5,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:29.660Z"
+    },
+    {
+      "id": "ans_muzoqn0l_zw7mxu",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 6,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:30.021Z"
+    },
+    {
+      "id": "ans_muzoqnd0_2koweu",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 7,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:30.468Z"
+    },
+    {
+      "id": "ans_muzoqnpl_p7yk2b",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:30.921Z"
+    },
+    {
+      "id": "ans_muzoqo1o_78mb2i",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 9,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:31.356Z"
+    },
+    {
+      "id": "ans_muzoqoe8_u6lr6r",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:31.808Z"
+    },
+    {
+      "id": "ans_muzoqoqi_0htife",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 11,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:32.250Z"
+    },
+    {
+      "id": "ans_muzoqp0z_0apmfb",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 12,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:32.627Z"
+    },
+    {
+      "id": "ans_muzoqpb0_b0gd66",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 13,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:32.988Z"
+    },
+    {
+      "id": "ans_muzoqpni_lk4wo0",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:33.438Z"
+    },
+    {
+      "id": "ans_muzoqpzt_ygepyt",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 15,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:33.881Z"
+    },
+    {
+      "id": "ans_muzoqqby_g3ikbg",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:34.318Z"
+    },
+    {
+      "id": "ans_muzoqqoe_zkxb9d",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:34.766Z"
+    },
+    {
+      "id": "ans_muzoqr11_8lcxql",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:35.221Z"
+    },
+    {
+      "id": "ans_muzoqrcy_ytl7ne",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:22:35.650Z"
+    },
+    {
+      "id": "ans_muzp0fhj_cbqo78",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:06.823Z"
+    },
+    {
+      "id": "ans_muzp0fs2_sgsy92",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 2,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:07.202Z"
+    },
+    {
+      "id": "ans_muzp0g29_2t4949",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 3,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:07.569Z"
+    },
+    {
+      "id": "ans_muzp0gep_cafd7w",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 4,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:08.017Z"
+    },
+    {
+      "id": "ans_muzp0gow_y946to",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 5,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:08.384Z"
+    },
+    {
+      "id": "ans_muzp0gz3_b5e23w",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 6,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:08.751Z"
+    },
+    {
+      "id": "ans_muzp0hbw_o92ae7",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 7,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:09.212Z"
+    },
+    {
+      "id": "ans_muzp0ho1_uqybws",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:09.649Z"
+    },
+    {
+      "id": "ans_muzp0i0w_xd35dv",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 9,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:10.112Z"
+    },
+    {
+      "id": "ans_muzp0idc_jsqikn",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:10.560Z"
+    },
+    {
+      "id": "ans_muzp0ipf_fwhy1t",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 11,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:10.995Z"
+    },
+    {
+      "id": "ans_muzp0izp_scp2f6",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 12,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:11.365Z"
+    },
+    {
+      "id": "ans_muzp0j9h_hphddp",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 13,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:11.717Z"
+    },
+    {
+      "id": "ans_muzp0jlz_kue7hx",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:12.167Z"
+    },
+    {
+      "id": "ans_muzp0jxv_wh1m1d",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 15,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:12.595Z"
+    },
+    {
+      "id": "ans_muzp0k9t_b053aq",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:13.025Z"
+    },
+    {
+      "id": "ans_muzp0kmu_grtztc",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:13.494Z"
+    },
+    {
+      "id": "ans_muzp0kzn_uc7gao",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:13.955Z"
+    },
+    {
+      "id": "ans_muzp0lc7_j5bimp",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T15:30:14.407Z"
     }
   ],
   "results": [
@@ -675,6 +1303,33 @@
       "summary": "Your responses indicate typical developmental progress in social communication milestones.",
       "recommendationsJson": "[\"If your child is under 24 months, screen again after their second birthday as developmental patterns continue to evolve.\",\"Continue tracking milestones using our developmental checklist.\",\"Share any observations or parental intuition with your pediatrician at your next well-child visit.\"]",
       "generatedAt": "2026-10-08T14:58:22.460Z"
+    },
+    {
+      "id": "res_muzoop1l_u04zar",
+      "screeningId": "scr_muzooioz_1w345b",
+      "riskLevel": "LOW",
+      "score": 0,
+      "summary": "Your responses indicate typical developmental progress in social communication milestones.",
+      "recommendationsJson": "[\"If your child is under 24 months, screen again after their second birthday as developmental patterns continue to evolve.\",\"Continue tracking milestones using our developmental checklist.\",\"Share any observations or parental intuition with your pediatrician at your next well-child visit.\"]",
+      "generatedAt": "2026-10-08T15:20:59.337Z"
+    },
+    {
+      "id": "res_muzoqrqj_k9eq9o",
+      "screeningId": "scr_muzoqlfo_brjhmh",
+      "riskLevel": "LOW",
+      "score": 0,
+      "summary": "Your responses indicate typical developmental progress in social communication milestones.",
+      "recommendationsJson": "[\"If your child is under 24 months, screen again after their second birthday as developmental patterns continue to evolve.\",\"Continue tracking milestones using our developmental checklist.\",\"Share any observations or parental intuition with your pediatrician at your next well-child visit.\"]",
+      "generatedAt": "2026-10-08T15:22:36.139Z"
+    },
+    {
+      "id": "res_muzp0lp8_tcpujo",
+      "screeningId": "scr_muzp0fes_9c33t5",
+      "riskLevel": "LOW",
+      "score": 0,
+      "summary": "Your responses indicate typical developmental progress in social communication milestones.",
+      "recommendationsJson": "[\"If your child is under 24 months, screen again after their second birthday as developmental patterns continue to evolve.\",\"Continue tracking milestones using our developmental checklist.\",\"Share any observations or parental intuition with your pediatrician at your next well-child visit.\"]",
+      "generatedAt": "2026-10-08T15:30:14.876Z"
     }
   ],
   "auditLogs": [
@@ -867,6 +1522,346 @@
       "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
       "ipAddress": null,
       "timestamp": "2026-10-08T14:58:57.920Z"
+    },
+    {
+      "id": "log_muzooh8g_pck74s",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:20:49.216Z"
+    },
+    {
+      "id": "log_muzoohr2_6la1rt",
+      "userId": "usr_muzoohr1_632k5v",
+      "action": "CONSENT_GIVEN",
+      "resourceType": "Consent",
+      "resourceId": "usr_muzoohr1_632k5v",
+      "details": "Consent version 1.0.0-dpdp2023 accepted under DPDP Act 2023",
+      "ipAddress": "::1",
+      "timestamp": "2026-10-08T15:20:49.886Z"
+    },
+    {
+      "id": "log_muzooide_v9d563",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "CHILD_CREATED",
+      "resourceType": "Child",
+      "resourceId": "chd_muzooidd_0kda9x",
+      "details": "Profile created for child with calculated age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:20:50.690Z"
+    },
+    {
+      "id": "log_muzooinm_t2x1xc",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:20:51.058Z"
+    },
+    {
+      "id": "log_muzooip0_6rdycu",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzooioz_1w345b",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:20:51.108Z"
+    },
+    {
+      "id": "log_muzoop1l_b4v0kg",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_SUBMITTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzooioz_1w345b",
+      "details": "Completed with total score 0 -> LOW",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:20:59.337Z"
+    },
+    {
+      "id": "log_muzoqk28_bly0hz",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:26.192Z"
+    },
+    {
+      "id": "log_muzoqkkw_blhfg0",
+      "userId": "usr_muzoqkkv_zzvi1v",
+      "action": "CONSENT_GIVEN",
+      "resourceType": "Consent",
+      "resourceId": "usr_muzoqkkv_zzvi1v",
+      "details": "Consent version 1.0.0-dpdp2023 accepted under DPDP Act 2023",
+      "ipAddress": "::1",
+      "timestamp": "2026-10-08T15:22:26.864Z"
+    },
+    {
+      "id": "log_muzoql45_1p57po",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "CHILD_CREATED",
+      "resourceType": "Child",
+      "resourceId": "chd_muzoql45_xrbrv9",
+      "details": "Profile created for child with calculated age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:27.557Z"
+    },
+    {
+      "id": "log_muzoqlei_ri7igr",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:27.930Z"
+    },
+    {
+      "id": "log_muzoqlfp_cb8u9d",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzoqlfo_brjhmh",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:27.973Z"
+    },
+    {
+      "id": "log_muzoqrqj_2xvknj",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_SUBMITTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzoqlfo_brjhmh",
+      "details": "Completed with total score 0 -> LOW",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:36.139Z"
+    },
+    {
+      "id": "log_muzoqt3d_qexfg5",
+      "userId": null,
+      "action": "DATA_DELETED",
+      "resourceType": "User",
+      "resourceId": "usr_muzoqkkv_zzvi1v",
+      "details": "Parent exercised DPDP Act 2023 Right to Erasure - all records cascaded and destroyed",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:37.897Z"
+    },
+    {
+      "id": "log_muzor9of_o9i4k5",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:59.391Z"
+    },
+    {
+      "id": "log_muzor9p6_xujwwh",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzor9p5_ua7pel",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:22:59.418Z"
+    },
+    {
+      "id": "log_muzore8m_die716",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:23:05.302Z"
+    },
+    {
+      "id": "log_muzot1xr_7eoybx",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzot1xq_t2nllb",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:22.671Z"
+    },
+    {
+      "id": "log_muzot88q_k9ks6w",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzot88p_3fan79",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:30.842Z"
+    },
+    {
+      "id": "log_muzoteup_rszomz",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:39.409Z"
+    },
+    {
+      "id": "log_muzotevm_3g5ak7",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzotevl_o40teu",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:39.442Z"
+    },
+    {
+      "id": "log_muzotlou_dovvtx",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzotlot_o9uuys",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:48.270Z"
+    },
+    {
+      "id": "log_muzotlpd_70t5c3",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:48.289Z"
+    },
+    {
+      "id": "log_muzotsoj_hmxy5e",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:57.331Z"
+    },
+    {
+      "id": "log_muzotspd_zrmoii",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzotspd_8pjfsr",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:24:57.361Z"
+    },
+    {
+      "id": "log_muzotzqn_4nuuql",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:25:06.479Z"
+    },
+    {
+      "id": "log_muzotzrt_d8bvgg",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzotzrs_jj2z6k",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:25:06.521Z"
+    },
+    {
+      "id": "log_muzoxilv_koyf1d",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:27:50.899Z"
+    },
+    {
+      "id": "log_muzozu51_sau76e",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:29:39.157Z"
+    },
+    {
+      "id": "log_muzp0eg6_ijjl2h",
+      "userId": "usr_muzp0eg5_4g821n",
+      "action": "CONSENT_GIVEN",
+      "resourceType": "Consent",
+      "resourceId": "usr_muzp0eg5_4g821n",
+      "details": "Consent version 1.0.0-dpdp2023 accepted under DPDP Act 2023",
+      "ipAddress": "::1",
+      "timestamp": "2026-10-08T15:30:05.478Z"
+    },
+    {
+      "id": "log_muzp0f2w_1h7g29",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "CHILD_CREATED",
+      "resourceType": "Child",
+      "resourceId": "chd_muzp0f2v_zcnpre",
+      "details": "Profile created for child with calculated age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:30:06.296Z"
+    },
+    {
+      "id": "log_muzp0fdn_zr4uuq",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:30:06.683Z"
+    },
+    {
+      "id": "log_muzp0fet_sall7h",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzp0fes_9c33t5",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:30:06.725Z"
+    },
+    {
+      "id": "log_muzp0lpa_dh6m7n",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_SUBMITTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzp0fes_9c33t5",
+      "details": "Completed with total score 0 -> LOW",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:30:14.878Z"
+    },
+    {
+      "id": "log_muzp0n44_4gjes0",
+      "userId": null,
+      "action": "DATA_DELETED",
+      "resourceType": "User",
+      "resourceId": "usr_muzp0eg5_4g821n",
+      "details": "Parent exercised DPDP Act 2023 Right to Erasure - all records cascaded and destroyed",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T15:30:16.708Z"
     }
   ]
 }

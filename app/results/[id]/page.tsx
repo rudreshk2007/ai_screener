@@ -14,15 +14,12 @@ import {
   Baby,
   Stethoscope,
   ArrowRight,
-  ExternalLink,
-  ChevronRight,
   Printer,
   CheckCircle2,
   FileCheck,
-  Share2,
   Copy,
-  Info,
   Check,
+  Info,
   Sparkles,
 } from "lucide-react";
 
@@ -36,7 +33,6 @@ export default function ResultPage() {
   const [loading, setLoading] = useState(true);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  const [showShareModal, setShowShareModal] = useState(false);
 
   useEffect(() => {
     async function loadResult() {
@@ -58,8 +54,8 @@ export default function ResultPage() {
   if (loading) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
-        <div className="w-12 h-12 border-4 border-cyan-200 dark:border-cyan-900 border-t-cyan-600 rounded-full animate-spin"></div>
-        <p className="text-sm text-slate-600 dark:text-slate-300 font-bold">
+        <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+        <p className="text-base text-foreground font-bold">
           Calibrating standardized clinical evaluation...
         </p>
       </div>
@@ -68,12 +64,15 @@ export default function ResultPage() {
 
   if (!data || !data.screening) {
     return (
-      <div className="max-w-md mx-auto p-8 text-center space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Screening Record Not Found</h2>
-        <p className="text-xs text-slate-500">
+      <div className="max-w-md mx-auto p-8 text-center space-y-5">
+        <h2 className="text-2xl font-bold text-foreground">Screening Record Not Found</h2>
+        <p className="text-sm text-foreground-muted">
           The requested evaluation report is unavailable or has been archived.
         </p>
-        <Link href="/dashboard" className="px-5 py-2.5 bg-cyan-700 text-white rounded-xl text-xs font-semibold inline-block">
+        <Link
+          href="/dashboard"
+          className="px-6 py-3 bg-primary hover:bg-primary-hover text-white rounded-xl text-sm font-bold inline-block"
+        >
           Return to Dashboard
         </Link>
       </div>
@@ -85,25 +84,23 @@ export default function ResultPage() {
   const riskLevel = screening.riskLevel as "LOW" | "MEDIUM" | "HIGH";
   const totalScore = screening.totalScore ?? 0;
   const maxScore = config.questions.length || 20;
-  const scorePercent = Math.min(100, Math.max(0, (totalScore / maxScore) * 100));
 
   // Get matching threshold metadata
   const thresholdMeta = config.riskThresholds.find((th: any) => th.level === riskLevel) || {
     label: `${riskLevel} likelihood of needing further evaluation`,
     summary: screening.result?.summary || "Evaluation summary unavailable.",
-    color: riskLevel === "LOW" ? "emerald" : riskLevel === "MEDIUM" ? "amber" : "rose",
     badge: `${riskLevel} Risk`,
   };
 
   // Copy clinician brief to clipboard
   const handleCopySummary = () => {
-    const summaryText = `EarlySteps Screening Report\nChild: ${child.name} (DOB: ${new Date(child.dateOfBirth).toLocaleDateString()})\nInstrument: ${config.name}\nScore: ${totalScore}/${maxScore}\nClassification: ${thresholdMeta.label}\nSummary: ${thresholdMeta.summary}\nNext Steps:\n${recommendations.map((r: string) => "- " + r).join("\n")}\n\nNotice: Non-diagnostic screening instrument. Recommended consultation with developmental pediatrician.`;
+    const summaryText = `EarlySteps Screening Report\nChild: ${child.name} (DOB: ${new Date(child.dateOfBirth).toLocaleDateString()})\nInstrument: ${config.name}\nClassification: ${thresholdMeta.label}\nSummary: ${thresholdMeta.summary}\nNext Steps:\n${recommendations.map((r: string) => "- " + r).join("\n")}\n\nNotice: Non-diagnostic screening instrument. Recommended consultation with developmental pediatrician.`;
     navigator.clipboard.writeText(summaryText);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
 
-  // Generate PDF function for Pediatrician consultation
+  // Generate PDF report for Doctor consultation
   const generateDoctorPdf = () => {
     setDownloadingPdf(true);
     try {
@@ -114,7 +111,7 @@ export default function ResultPage() {
       });
 
       // Header
-      doc.setFillColor(8, 145, 178); // Teal
+      doc.setFillColor(13, 92, 99); // Teal
       doc.rect(0, 0, 210, 24, "F");
 
       doc.setTextColor(255, 255, 255);
@@ -128,7 +125,7 @@ export default function ResultPage() {
       doc.text("Standardized Pediatric Observation Summary • Non-Diagnostic Screener", 14, 21);
 
       // Section 1: Child & Screening Information
-      doc.setTextColor(15, 23, 42);
+      doc.setTextColor(30, 41, 59);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(12);
       doc.text("1. Child & Screening Demographics", 14, 34);
@@ -155,20 +152,20 @@ export default function ResultPage() {
       doc.text("2. Screening Result & Clinical Likelihood", 14, 66);
 
       // Highlight Box
-      doc.setFillColor(riskLevel === "LOW" ? 236 : riskLevel === "MEDIUM" ? 254 : 255, riskLevel === "LOW" ? 253 : riskLevel === "MEDIUM" ? 243 : 228, riskLevel === "LOW" ? 245 : riskLevel === "MEDIUM" ? 199 : 230);
+      doc.setFillColor(riskLevel === "LOW" ? 234 : riskLevel === "MEDIUM" ? 254 : 255, riskLevel === "LOW" ? 247 : riskLevel === "MEDIUM" ? 243 : 241, riskLevel === "LOW" ? 241 : riskLevel === "MEDIUM" ? 199 : 242);
       doc.rect(14, 70, 182, 24, "F");
 
-      doc.setTextColor(riskLevel === "LOW" ? 5 : riskLevel === "MEDIUM" ? 180 : 190, riskLevel === "LOW" ? 150 : riskLevel === "MEDIUM" ? 83 : 18, riskLevel === "LOW" ? 105 : riskLevel === "MEDIUM" ? 9 : 60);
+      doc.setTextColor(riskLevel === "LOW" ? 13 : riskLevel === "MEDIUM" ? 180 : 190, riskLevel === "LOW" ? 122 : riskLevel === "MEDIUM" ? 83 : 18, riskLevel === "LOW" ? 85 : riskLevel === "MEDIUM" ? 9 : 60);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(11);
       doc.text(`Classification: ${thresholdMeta.label}`, 18, 78);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9.5);
-      doc.text(`Total Risk Score: ${screening.totalScore} / ${config.questions.length} points (${thresholdMeta.badge})`, 18, 85);
+      doc.text(`Observation Placement: ${thresholdMeta.badge}`, 18, 85);
       doc.text(`Summary: ${thresholdMeta.summary}`, 18, 91);
 
       // Section 3: Recommended Clinical Actions
-      doc.setTextColor(15, 23, 42);
+      doc.setTextColor(30, 41, 59);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(12);
       doc.text("3. Recommended Clinical Follow-up", 14, 102);
@@ -176,7 +173,7 @@ export default function ResultPage() {
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
       let yOffset = 108;
-      recommendations.forEach((rec: string, idx: number) => {
+      recommendations.forEach((rec: string) => {
         doc.text(`• ${rec}`, 18, yOffset);
         yOffset += 6;
       });
@@ -200,7 +197,7 @@ export default function ResultPage() {
         }
       });
 
-      // Critical Medical Disclaimer Footer (Mandatory Rule #1)
+      // Mandatory Clinical Disclaimer Footer
       doc.setFillColor(241, 245, 249);
       doc.rect(14, 268, 182, 22, "F");
       doc.setFontSize(7.5);
@@ -209,7 +206,7 @@ export default function ResultPage() {
       doc.text("MANDATORY CLINICAL NOTICE: THIS IS A SCREENING TOOL, NOT A DIAGNOSIS.", 18, 273);
       doc.setFont("helvetica", "normal");
       doc.text(
-        "A positive screening score does not confirm autism; a negative score does not exclude it. Always discuss with a pediatrician.",
+        "A screening score does not confirm autism; a typical score does not exclude it. Always discuss with a pediatrician.",
         18,
         278
       );
@@ -228,54 +225,54 @@ export default function ResultPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
-      {/* 1. MANDATORY CLINICAL SCREENING DISCLAIMER (RULE #1) */}
+    <div className="max-w-4xl mx-auto px-4 py-10 sm:py-14 space-y-8">
+      {/* 1. MANDATORY CLINICAL SCREENING DISCLAIMER (RULE #1) - PINNED VISIBLY */}
       <div
         role="alert"
-        className="p-5 rounded-3xl bg-amber-50/90 dark:bg-amber-950/40 border-2 border-amber-300/80 dark:border-amber-800 text-amber-950 dark:text-amber-200 space-y-2 shadow-soft backdrop-blur-sm"
+        className="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border-2 border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-200 space-y-2 shadow-subtle"
       >
-        <div className="flex items-center gap-2.5 font-bold text-sm tracking-wide uppercase">
+        <div className="flex items-center gap-2.5 font-bold text-base tracking-wide uppercase">
           <ShieldAlert className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
           <span>Screening Tool Only — Not a Medical Diagnosis</span>
         </div>
-        <p className="text-xs sm:text-sm leading-relaxed text-amber-900/90 dark:text-amber-200/90">
+        <p className="text-sm leading-relaxed text-amber-900/90 dark:text-amber-200/90">
           EarlySteps is an early developmental screening instrument, <strong>NOT a diagnostic evaluation</strong>. A
           screening score does not confirm an autism spectrum diagnosis, nor does it replace comprehensive clinical
           evaluation. Always share these findings with a qualified developmental pediatrician or specialist.
         </p>
       </div>
 
-      {/* 2. Main Result Summary Card */}
-      <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-9 border border-slate-200/90 dark:border-slate-700/90 shadow-card space-y-8">
-        {/* Child Header & Quick Actions */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-700 pb-6">
-          <div className="flex items-center gap-3.5">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-600 text-white flex items-center justify-center font-bold text-xl shadow-soft">
+      {/* 2. Main Result Evaluation Card */}
+      <div className="bg-card rounded-3xl p-6 sm:p-10 border border-border shadow-card space-y-8">
+        {/* Child Header & Doctor Actions */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary-soft text-primary flex items-center justify-center font-bold text-2xl shadow-subtle">
               <Baby className="w-7 h-7" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-                  {child.name}'s Evaluation
+                <h1 className="text-2xl sm:text-3xl font-bold font-heading text-foreground">
+                  Observations for {child.name}
                 </h1>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 border border-cyan-100 dark:border-cyan-800">
+                <span className="px-3 py-0.5 rounded-full text-xs font-bold bg-primary-soft text-primary border border-primary/20">
                   {config.shortName}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Evaluated on {new Date(screening.createdAt).toLocaleDateString(undefined, { dateStyle: "long" })} • Protocol v{config.version || "1.0"}
+              <p className="text-sm text-foreground-muted mt-0.5">
+                Evaluated on {new Date(screening.createdAt).toLocaleDateString(undefined, { dateStyle: "long" })}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={handleCopySummary}
-              className="px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 font-semibold text-xs flex items-center gap-1.5 transition-colors min-h-[44px]"
-              title="Copy summary for doctor email"
+              className="px-4 py-2.5 rounded-xl border border-border text-foreground hover:bg-muted font-semibold text-sm flex items-center gap-2 min-h-[48px] transition-colors"
+              title="Copy brief summary for doctor notes"
             >
-              {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-slate-500" />}
+              {copiedLink ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4 text-foreground-muted" />}
               <span>{copiedLink ? "Copied!" : "Copy Brief"}</span>
             </button>
 
@@ -283,52 +280,55 @@ export default function ResultPage() {
               type="button"
               onClick={generateDoctorPdf}
               disabled={downloadingPdf}
-              className="px-4 py-2.5 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-bold text-xs shadow-soft transition-all flex items-center justify-center gap-2 min-h-[44px]"
+              className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-sm shadow-subtle transition-all flex items-center justify-center gap-2 min-h-[48px]"
               id="download-pdf-btn"
             >
               <Download className="w-4 h-4" />
-              <span>{downloadingPdf ? "Generating PDF..." : "Download PDF Report"}</span>
+              <span>{downloadingPdf ? "Generating PDF..." : "Share with your doctor (PDF)"}</span>
             </button>
           </div>
         </div>
 
-        {/* 3. Classification Card: Color + Icon + Text (NEVER color alone) */}
+        {/* 3. Risk Summary Card: Headline is Likelihood (NEVER raw score alone) */}
         <div
-          className={`p-6 sm:p-7 rounded-3xl border-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 transition-all ${
+          className={`p-6 sm:p-8 rounded-2xl border-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 transition-all ${
             riskLevel === "LOW"
-              ? "bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100 shadow-sm"
+              ? "bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-100"
               : riskLevel === "MEDIUM"
-              ? "bg-amber-50/70 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-100 shadow-sm"
-              : "bg-rose-50/70 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-950 dark:text-rose-100 shadow-sm"
+              ? "bg-amber-50/80 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800 text-amber-950 dark:text-amber-100"
+              : "bg-rose-50/80 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-950 dark:text-rose-100"
           }`}
           id="risk-classification-box"
         >
           <div className="space-y-2">
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-3">
               {riskLevel === "LOW" && <ShieldCheck className="w-7 h-7 text-emerald-600 dark:text-emerald-400 shrink-0" />}
               {riskLevel === "MEDIUM" && <AlertTriangle className="w-7 h-7 text-amber-600 dark:text-amber-400 shrink-0" />}
               {riskLevel === "HIGH" && <AlertTriangle className="w-7 h-7 text-rose-600 dark:text-rose-400 shrink-0" />}
-              <span className="text-lg sm:text-xl font-extrabold tracking-tight">
+              {/* NEVER raw score as headline; headline is the likelihood label */}
+              <h2 className="text-xl sm:text-2xl font-bold font-heading tracking-tight">
                 {thresholdMeta.label}
-              </span>
+              </h2>
             </div>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 max-w-xl leading-relaxed">
+            <p className="text-base leading-relaxed max-w-xl">
               {thresholdMeta.summary}
             </p>
           </div>
 
-          <div className="text-left sm:text-right shrink-0 bg-white/70 dark:bg-slate-900/60 p-4 rounded-2xl border border-black/5 dark:border-white/5">
-            <span className="text-3xl sm:text-4xl font-black block tracking-tight">
-              {screening.totalScore}
-              <span className="text-xs text-slate-500 font-normal"> / {maxScore} pts</span>
+          <div className="text-left sm:text-right shrink-0 bg-card p-4 rounded-xl border border-border">
+            <span className="text-xs uppercase font-bold text-foreground-muted block">
+              Observed Indicators
+            </span>
+            <span className="text-lg font-bold text-foreground block mt-0.5">
+              {totalScore} of {maxScore} flagged
             </span>
             <span
-              className={`inline-block px-3 py-1 rounded-full text-xs font-bold mt-1 ${
+              className={`inline-block px-3 py-0.5 rounded-full text-xs font-bold mt-1 ${
                 riskLevel === "LOW"
-                  ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-900/60 dark:text-emerald-200"
+                  ? "bg-emerald-100 text-emerald-900"
                   : riskLevel === "MEDIUM"
-                  ? "bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-200"
-                  : "bg-rose-100 text-rose-900 dark:bg-rose-900/60 dark:text-rose-200"
+                  ? "bg-amber-100 text-amber-900"
+                  : "bg-rose-100 text-rose-900"
               }`}
             >
               {thresholdMeta.badge}
@@ -336,99 +336,60 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* 4. Interactive Visual Risk Barometer / Thermometer Dial */}
-        <div className="space-y-3 bg-slate-50 dark:bg-slate-900/60 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
-          <div className="flex items-center justify-between text-xs font-bold">
-            <span className="text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
-              Standardized M-CHAT-R/F Risk Scale
-            </span>
-            <span className="text-slate-500 font-medium">Child score: {totalScore} of {maxScore}</span>
-          </div>
-
-          {/* Barometer Track */}
-          <div className="relative pt-6 pb-2">
-            {/* Score Marker Needle */}
-            <div
-              className="absolute top-0 -translate-x-1/2 flex flex-col items-center transition-all duration-700 pointer-events-none z-10"
-              style={{ left: `${Math.min(95, Math.max(5, scorePercent))}%` }}
-            >
-              <span className="bg-slate-900 text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-md whitespace-nowrap">
-                Score {totalScore}
-              </span>
-              <div className="w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-slate-900"></div>
-            </div>
-
-            {/* Gradient Segmented Bar */}
-            <div className="grid grid-cols-3 h-3 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700">
-              <div className="bg-emerald-500" title="Low Likelihood (0-2 pts)"></div>
-              <div className="bg-amber-500" title="Medium Likelihood (3-7 pts)"></div>
-              <div className="bg-rose-500" title="High Likelihood (8-20 pts)"></div>
-            </div>
-
-            {/* Scale Legends */}
-            <div className="grid grid-cols-3 text-[11px] font-semibold text-slate-500 dark:text-slate-400 pt-2 text-center">
-              <div>Low Likelihood (0-2)</div>
-              <div>Medium Likelihood (3-7)</div>
-              <div>High Likelihood (8-20)</div>
-            </div>
-          </div>
-        </div>
-
-        {/* 5. Actionable Next Steps */}
+        {/* 4. Actionable "What to do next" Checklist */}
         <div className="space-y-4">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Stethoscope className="w-5 h-5 text-cyan-600" />
-            <span>Recommended Clinical Next Steps</span>
+          <h2 className="text-lg font-bold font-heading text-foreground flex items-center gap-2">
+            <Stethoscope className="w-5 h-5 text-primary" />
+            <span>What to do next: Pediatrician Consultation Checklist</span>
           </h2>
 
-          <div className="space-y-2.5">
+          <div className="space-y-3">
             {recommendations.map((rec: string, index: number) => (
               <div
                 key={index}
-                className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300 flex items-start gap-3"
+                className="p-4 rounded-2xl bg-muted border border-border text-base text-foreground flex items-start gap-3.5"
               >
-                <div className="w-6 h-6 rounded-xl bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                <div className="w-7 h-7 rounded-lg bg-primary-soft text-primary flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
                   {index + 1}
                 </div>
-                <span className="leading-relaxed font-medium">{rec}</span>
+                <span className="leading-relaxed">{rec}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 6. Itemized Breakdown */}
-        <div className="space-y-3 pt-2">
+        {/* 5. Itemized Breakdown */}
+        <div className="space-y-4 pt-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <FileCheck className="w-5 h-5 text-cyan-600" />
+            <h2 className="text-lg font-bold font-heading text-foreground flex items-center gap-2">
+              <FileCheck className="w-5 h-5 text-primary" />
               <span>Observation Breakdown ({screening.answers.length} Responses)</span>
             </h2>
-            <span className="text-xs text-slate-400">
-              {screening.answers.filter((a: any) => a.scoreValue > 0).length} items flagged
+            <span className="text-sm text-foreground-muted">
+              {screening.answers.filter((a: any) => a.scoreValue > 0).length} items flagged for discussion
             </span>
           </div>
 
-          <div className="divide-y divide-slate-100 dark:divide-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden max-h-80 overflow-y-auto">
+          <div className="divide-y divide-border border border-border rounded-2xl overflow-hidden max-h-80 overflow-y-auto bg-card">
             {screening.answers.map((ans: any) => {
               const q = config.questions.find((x: any) => x.id === ans.questionId);
               const isRisk = ans.scoreValue > 0;
               return (
-                <div key={ans.id} className="p-3.5 flex items-center justify-between text-xs gap-3 hover:bg-slate-50/50 dark:hover:bg-slate-750/50 transition-colors">
+                <div key={ans.id} className="p-4 flex items-center justify-between text-sm gap-4 hover:bg-muted/50 transition-colors">
                   <div className="space-y-0.5 max-w-lg">
-                    <span className="text-[10px] text-slate-400 font-semibold block uppercase">
+                    <span className="text-xs text-foreground-muted font-bold block uppercase">
                       Q{ans.questionId} • {q?.category || "Observation"}
                     </span>
-                    <p className="text-slate-800 dark:text-slate-200 font-medium">
+                    <p className="text-foreground font-medium">
                       {q?.text || `Question #${ans.questionId}`}
                     </p>
                   </div>
                   <div className="text-right shrink-0">
                     <span
-                      className={`inline-block px-2.5 py-0.5 rounded text-[11px] font-bold ${
+                      className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${
                         isRisk
-                          ? "bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300"
-                          : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300"
+                          ? "bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-300"
+                          : "bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300"
                       }`}
                     >
                       {ans.response} {isRisk ? "• Follow-up" : "• Typical"}
@@ -440,18 +401,18 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* Action Buttons: Specialist & Dashboard */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-slate-100 dark:border-slate-700">
+        {/* Navigation CTAs: Specialist & Dashboard */}
+        <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-border">
           <Link
             href="/specialists"
-            className="flex-1 py-3.5 px-4 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-bold text-xs sm:text-sm text-center shadow-soft transition-all flex items-center justify-center gap-2 min-h-[44px]"
+            className="flex-1 py-3.5 px-5 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-base text-center shadow-subtle transition-all flex items-center justify-center gap-2 min-h-[48px]"
           >
             <Stethoscope className="w-4 h-4" />
             <span>Find a Developmental Specialist</span>
           </Link>
           <Link
             href="/dashboard"
-            className="flex-1 py-3.5 px-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm text-center hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors flex items-center justify-center min-h-[44px]"
+            className="flex-1 py-3.5 px-5 rounded-xl border border-border text-foreground font-bold text-base text-center hover:bg-muted transition-colors flex items-center justify-center min-h-[48px]"
           >
             <span>Back to Parent Dashboard</span>
           </Link>

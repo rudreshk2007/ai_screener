@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageContext";
-import { ShieldCheck, Lock, UserCheck, AlertCircle, ArrowRight, Sparkles } from "lucide-react";
+import { ShieldCheck, Lock, UserCheck, AlertCircle, ArrowRight, Heart } from "lucide-react";
 
 export default function LoginPage() {
   const { t } = useLanguage();
@@ -85,66 +85,45 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg space-y-6">
-        {/* Quick Demo Credentials Bar */}
-        <div className="p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-800 text-xs space-y-2">
-          <div className="flex items-center gap-1.5 font-bold text-cyan-900 dark:text-cyan-200">
-            <Sparkles className="w-4 h-4 text-cyan-600" />
-            <span>One-Click Demo Credentials:</span>
+      <div className="max-w-md w-full space-y-6">
+        {/* Brand identity */}
+        <div className="text-center space-y-2">
+          <div className="w-12 h-12 rounded-2xl bg-primary-soft text-primary mx-auto flex items-center justify-center shadow-subtle">
+            <Heart className="w-6 h-6 fill-primary/20 stroke-primary" />
           </div>
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              type="button"
-              onClick={() => fillDemoAccount("parent@earlysteps.org", "Parent@123", "Priya Sharma")}
-              className="px-2 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-cyan-100 dark:hover:bg-cyan-900 text-slate-800 dark:text-slate-200 text-left transition-colors min-h-[44px]"
-            >
-              <strong className="block text-cyan-700 dark:text-cyan-400">Parent</strong>
-              <span className="text-[10px] text-slate-500">Priya (3 kids)</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoAccount("doctor@earlysteps.org", "Doctor@123", "Dr. Ananya Roy")}
-              className="px-2 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-cyan-100 dark:hover:bg-cyan-900 text-slate-800 dark:text-slate-200 text-left transition-colors min-h-[44px]"
-            >
-              <strong className="block text-cyan-700 dark:text-cyan-400">Clinician</strong>
-              <span className="text-[10px] text-slate-500">Dr. Roy</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoAccount("admin@earlysteps.org", "Admin@123", "Admin")}
-              className="px-2 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-cyan-100 dark:hover:bg-cyan-900 text-slate-800 dark:text-slate-200 text-left transition-colors min-h-[44px]"
-            >
-              <strong className="block text-cyan-700 dark:text-cyan-400">Admin</strong>
-              <span className="text-[10px] text-slate-500">Metrics</span>
-            </button>
-          </div>
+          <h2 className="text-2xl font-bold font-heading text-foreground">
+            Early<span className="text-primary">Steps</span> Health
+          </h2>
+          <p className="text-sm text-foreground-muted">
+            Gentle pediatric developmental screening platform
+          </p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-card space-y-6">
+        <div className="bg-card rounded-3xl p-7 sm:p-9 border border-border shadow-card space-y-6">
           <div className="text-center space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-2xl font-bold font-heading text-foreground">
               {mode === "login" ? "Sign In to EarlySteps" : "Parent Account & Consent"}
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-foreground-muted leading-relaxed">
               {mode === "login"
                 ? "Access your children's developmental screenings and doctor reports"
-                : "Secure, confidential screening aligned with India's DPDP Act 2023"}
+                : "Confidential screening aligned with India's DPDP Act 2023"}
             </p>
           </div>
 
           {/* Mode Switcher */}
-          <div className="flex rounded-xl bg-slate-100 dark:bg-slate-900 p-1 border border-slate-200 dark:border-slate-800">
+          <div className="flex rounded-xl bg-muted p-1 border border-border">
             <button
               type="button"
               onClick={() => {
                 setMode("login");
                 setError(null);
               }}
-              className={`w-1/2 py-2 text-xs font-semibold rounded-lg transition-colors min-h-[40px] ${
+              className={`w-1/2 py-2.5 text-sm font-bold rounded-lg transition-colors min-h-[44px] ${
                 mode === "login"
-                  ? "bg-white dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 shadow-sm"
-                  : "text-slate-600 dark:text-slate-400"
+                  ? "bg-card text-primary shadow-subtle"
+                  : "text-foreground-muted hover:text-foreground"
               }`}
             >
               Sign In
@@ -155,10 +134,10 @@ export default function LoginPage() {
                 setMode("signup");
                 setError(null);
               }}
-              className={`w-1/2 py-2 text-xs font-semibold rounded-lg transition-colors min-h-[40px] ${
+              className={`w-1/2 py-2.5 text-sm font-bold rounded-lg transition-colors min-h-[44px] ${
                 mode === "signup"
-                  ? "bg-white dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 shadow-sm"
-                  : "text-slate-600 dark:text-slate-400"
+                  ? "bg-card text-primary shadow-subtle"
+                  : "text-foreground-muted hover:text-foreground"
               }`}
             >
               Create Account
@@ -169,9 +148,9 @@ export default function LoginPage() {
           {error && (
             <div
               role="alert"
-              className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-xs flex items-start gap-2"
+              className="p-3.5 rounded-xl bg-rose-50 text-rose-900 text-sm border border-rose-200 flex items-start gap-2.5"
             >
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
           )}
@@ -180,7 +159,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === "signup" && (
               <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1" htmlFor="name">
+                <label className="block text-sm font-semibold text-foreground mb-1.5" htmlFor="name">
                   Parent or Guardian Name
                 </label>
                 <input
@@ -190,13 +169,13 @@ export default function LoginPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Priya Sharma"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:border-cyan-500 min-h-[44px]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-base focus-visible:ring-2 focus-visible:ring-primary min-h-[48px]"
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1" htmlFor="email">
+              <label className="block text-sm font-semibold text-foreground mb-1.5" htmlFor="email">
                 Email Address
               </label>
               <input
@@ -206,12 +185,12 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="parent@earlysteps.org"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:border-cyan-500 min-h-[44px]"
+                className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-base focus-visible:ring-2 focus-visible:ring-primary min-h-[48px]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1" htmlFor="password">
+              <label className="block text-sm font-semibold text-foreground mb-1.5" htmlFor="password">
                 Password
               </label>
               <input
@@ -221,31 +200,31 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm focus:border-cyan-500 min-h-[44px]"
+                className="w-full px-4 py-2.5 rounded-xl border border-border bg-background text-foreground text-base focus-visible:ring-2 focus-visible:ring-primary min-h-[48px]"
               />
             </div>
 
-            {/* Plain-Language DPDP Act 2023 Consent Screen (Always visible during signup) */}
+            {/* DPDP Act Verifiable Parental Consent Screen in Signup Mode */}
             {mode === "signup" && (
-              <div className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/80 space-y-3">
-                <div className="flex items-center gap-2 text-emerald-900 dark:text-emerald-300 font-bold text-xs">
-                  <Lock className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-                  <span>Verifiable Consent Notice (DPDP Act 2023 • v1.0.0)</span>
+              <div className="p-4 rounded-2xl bg-muted border border-border space-y-3">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Verifiable Consent (DPDP Act 2023)</span>
                 </div>
-                <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                  We process only the observational answers you provide to compute developmental risk likelihoods. You
-                  retain the legal right to export your data or delete your account at any time.
-                </p>
-                <label className="flex items-start gap-2.5 cursor-pointer pt-1">
+
+                <label className="flex items-start gap-3 cursor-pointer">
                   <input
                     type="checkbox"
                     id="consent-checkbox"
                     checked={consentGiven}
                     onChange={(e) => setConsentGiven(e.target.checked)}
-                    className="w-4 h-4 mt-0.5 rounded text-cyan-600 focus:ring-cyan-500 shrink-0"
+                    className="w-5 h-5 mt-0.5 rounded text-primary focus:ring-primary shrink-0"
+                    required
                   />
-                  <span className="text-xs text-slate-800 dark:text-slate-200 font-medium">
-                    I confirm I am the parent/legal guardian and give verifiable consent for developmental screening.
+                  <span className="text-sm text-foreground-muted leading-relaxed">
+                    I confirm that I am the legal parent/guardian of the child being screened. I consent to
+                    recording developmental observations for the sole purpose of non-diagnostic screening. I
+                    understand I may export or permanently delete this data at any time.
                   </span>
                 </label>
               </div>
@@ -254,22 +233,34 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl bg-cyan-700 hover:bg-cyan-800 text-white font-semibold text-sm shadow-soft transition-colors min-h-[48px] flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 rounded-xl bg-primary hover:bg-primary-hover text-white font-bold text-base shadow-subtle transition-all flex items-center justify-center gap-2 min-h-[48px]"
             >
-              {loading ? (
-                <span>Processing...</span>
-              ) : (
-                <>
-                  <span>{mode === "login" ? "Sign In & Continue" : "Agree & Create Account"}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
+              <span>{loading ? "Processing..." : mode === "login" ? "Sign In" : "Agree & Create Account"}</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
-          {/* Privacy Note */}
-          <div className="pt-2 text-center text-[11px] text-slate-500 dark:text-slate-400">
-            By continuing, you acknowledge that EarlySteps is a screening tool and does not provide medical diagnoses.
+          {/* Quick Demo Pre-seed Fillers for Evaluator */}
+          <div className="pt-4 border-t border-border space-y-2.5">
+            <span className="text-xs font-bold text-foreground-muted uppercase tracking-wider block text-center">
+              Evaluator Quick Access Credentials
+            </span>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => fillDemoAccount("parent@earlysteps.org", "Parent@123", "Priya Sharma")}
+                className="p-2.5 rounded-xl bg-muted hover:bg-border text-xs text-foreground font-semibold text-center transition-colors min-h-[44px]"
+              >
+                Demo Parent
+              </button>
+              <button
+                type="button"
+                onClick={() => fillDemoAccount("doctor@earlysteps.org", "Doctor@123", "Dr. Ananya Roy")}
+                className="p-2.5 rounded-xl bg-muted hover:bg-border text-xs text-foreground font-semibold text-center transition-colors min-h-[44px]"
+              >
+                Demo Clinician
+              </button>
+            </div>
           </div>
         </div>
       </div>

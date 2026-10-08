@@ -1,218 +1,363 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "./LanguageContext";
 import {
-  HeartHandshake,
+  Heart,
   Moon,
   Sun,
   Globe,
   Menu,
   X,
-  ShieldCheck,
-  Stethoscope,
-  Activity,
-  Layers,
-  MapPin,
-  Lock,
   ChevronDown,
-  Sparkles,
+  Check,
   User,
+  LogOut,
+  Sparkles,
+  ShieldAlert,
 } from "lucide-react";
 
 export function Navbar() {
   const { language, setLanguage, t, isDark, toggleTheme } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [userRole, setUserRole] = useState<string>("PARENT");
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [noticeDismissed, setNoticeDismissed] = useState(false);
+  const [currentUser, setCurrentUser] = useState<{ email: string; name: string; role: string } | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Check auth state & scroll position
   useEffect(() => {
     try {
-      const user = localStorage.getItem("earlysteps_current_user");
-      if (user) {
-        const parsed = JSON.parse(user);
-        if (parsed.role) setUserRole(parsed.role);
+      const stored = localStorage.getItem("earlysteps_current_user");
+      if (stored) {
+        setCurrentUser(JSON.parse(stored));
+      } else {
+        setCurrentUser(null);
       }
-    } catch {}
+    } catch {
+      setCurrentUser(null);
+    }
   }, [pathname]);
 
-  const navLinks = [
-    { href: "/", label: t.nav.home },
-    { href: "/dashboard", label: t.nav.dashboard },
-    { href: "/milestones", label: t.nav.milestones, icon: Activity },
-    { href: "/specialists", label: t.nav.specialists, icon: MapPin },
-    { href: "/clinician", label: t.nav.clinician, icon: Stethoscope },
-    { href: "/admin", label: t.nav.admin, icon: Layers },
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("earlysteps_current_user");
+    setCurrentUser(null);
+    window.location.href = "/";
+  };
+
+  // Determine Nav links based strictly on auth role
+  const isAuth = !!currentUser;
+  const role = currentUser?.role || "PARENT";
+
+  const publicLinks = [
+    { href: "/#how-it-works", label: "How it works" },
+    { href: "/milestones", label: "Milestones" },
+    { href: "/specialists", label: "Find specialists" },
+    { href: "/#faq", label: "FAQ" },
   ];
 
+  const loggedInLinks =
+    role === "CLINICIAN"
+      ? [
+          { href: "/clinician", label: "Clinician View" },
+          { href: "/milestones", label: "Milestones" },
+          { href: "/specialists", label: "Specialists" },
+          { href: "/privacy", label: "Privacy" },
+        ]
+      : role === "ADMIN"
+      ? [
+          { href: "/admin", label: "Admin Console" },
+          { href: "/dashboard", label: "Dashboard" },
+          { href: "/milestones", label: "Milestones" },
+          { href: "/privacy", label: "Privacy" },
+        ]
+      : [
+          { href: "/dashboard", label: "Dashboard" },
+          { href: "/dashboard#children", label: "Children" },
+          { href: "/milestones", label: "Milestones" },
+          { href: "/privacy", label: "Account" },
+        ];
+
+  const linksToRender = isAuth ? loggedInLinks : publicLinks;
+
+  const languages = [
+    { code: "en", label: "English", short: "EN" },
+    { code: "hi", label: "हिन्दी", short: "HI" },
+    { code: "mr", label: "मराठी", short: "MR" },
+  ] as const;
+
+  const activeLangObj = languages.find((l) => l.code === language) || languages[0];
+
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/85 dark:bg-slate-950/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
-      {/* SaaS Clinical Disclaimer Ticker */}
-      <div className="bg-gradient-to-r from-cyan-900 via-teal-900 to-cyan-950 text-cyan-100 text-[11px] sm:text-xs px-4 py-1.5 flex items-center justify-between font-medium shadow-inner">
-        <div className="flex items-center gap-2 max-w-7xl mx-auto w-full">
-          <div className="flex items-center gap-1.5 bg-cyan-800/80 px-2 py-0.5 rounded-full border border-cyan-600/50 text-[10px] uppercase font-bold tracking-wider text-cyan-200 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            Screening Instrument
-          </div>
-          <span className="truncate text-cyan-100/90">
-            EarlySteps is an early developmental screening tool, <strong>NOT a diagnosis</strong>. Always consult your pediatrician.
-          </span>
-          <div className="hidden md:flex items-center gap-1.5 ml-auto shrink-0 text-cyan-300 font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>DPDP Act 2023 Verified</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo & Brand */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none" aria-label="EarlySteps Home">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-600 via-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-soft group-hover:scale-105 transition-transform duration-200">
-              <HeartHandshake className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-1">
-                Early<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-500 dark:from-cyan-400 dark:to-teal-300">Steps</span>
-              </span>
-              <span className="text-[10px] block text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider -mt-1">
-                Pediatric Screening (12–48m)
+    <header className="sticky top-0 z-50 w-full transition-shadow duration-200">
+      {/* 1. Slim Top Notice: 14px+, dismissible */}
+      {!noticeDismissed && (
+        <aside
+          aria-label="Clinical screening notice"
+          className="bg-primary text-white text-sm px-4 py-2 flex items-center justify-between border-b border-primary-hover shadow-subtle"
+        >
+          <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-3 text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-warm shrink-0" aria-hidden="true" />
+              <span>
+                <strong>A screening tool, not a diagnosis.</strong> Always consult your pediatrician for developmental evaluations.
               </span>
             </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/60 p-1.5 rounded-2xl border border-slate-200/60 dark:border-slate-800/60" aria-label="Main Navigation">
-            {navLinks.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all min-h-[38px] flex items-center gap-1.5 ${
-                    active
-                      ? "text-cyan-800 dark:text-cyan-200 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/50 dark:border-slate-700/50 font-bold"
-                      : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-slate-800/40"
-                  }`}
-                >
-                  {link.icon && <link.icon className="w-3.5 h-3.5 opacity-80" />}
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right utility items: Language switcher, Dark Mode, Role Badge */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            {/* Language Switcher */}
-            <div className="flex items-center bg-slate-100/80 dark:bg-slate-900/80 rounded-xl p-1 border border-slate-200/80 dark:border-slate-800/80">
-              <Globe className="w-3.5 h-3.5 text-slate-500 ml-1.5 mr-1" aria-hidden="true" />
-              {(["en", "hi", "mr"] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLanguage(l)}
-                  className={`px-2 py-1 text-[11px] font-bold rounded-lg transition-colors min-h-[30px] ${
-                    language === l
-                      ? "bg-white dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 shadow-sm"
-                      : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
-                  }`}
-                  aria-label={`Switch language to ${l}`}
-                >
-                  {l === "en" ? "EN" : l === "hi" ? "हिन्दी" : "मराठी"}
-                </button>
-              ))}
-            </div>
-
-            {/* Dark Mode Toggle */}
             <button
-              onClick={toggleTheme}
-              className="p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center bg-white/50 dark:bg-slate-900/50 shadow-sm"
-              aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+              onClick={() => setNoticeDismissed(true)}
+              className="text-white/80 hover:text-white p-1 rounded-md min-h-[32px] min-w-[32px] flex items-center justify-center shrink-0"
+              aria-label="Dismiss screening notice"
             >
-              {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
-            </button>
-
-            {/* DPDP Privacy Badge */}
-            <Link
-              href="/privacy"
-              className="px-2.5 py-2 rounded-xl border border-emerald-200/80 dark:border-emerald-800/60 text-xs font-semibold text-emerald-800 dark:text-emerald-300 bg-emerald-50/70 dark:bg-emerald-950/40 hover:bg-emerald-100/70 dark:hover:bg-emerald-900/50 flex items-center gap-1.5 min-h-[44px] shadow-sm transition-colors"
-              title="Digital Personal Data Protection Act 2023 Compliant"
-            >
-              <Lock className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span className="hidden xl:inline">DPDP 2023</span>
-            </Link>
-
-            {/* SaaS Sign In / Dashboard CTA */}
-            <Link
-              href="/dashboard"
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-700 to-teal-600 hover:from-cyan-800 hover:to-teal-700 text-white text-xs font-bold shadow-soft hover:shadow-md transition-all min-h-[44px] flex items-center gap-1.5"
-            >
-              <User className="w-3.5 h-3.5" />
-              <span>Portal Access</span>
-            </Link>
-          </div>
-
-          {/* Mobile hamburger button */}
-          <div className="flex sm:hidden items-center gap-2">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl text-slate-600 dark:text-slate-300 min-h-[44px] min-w-[44px] flex items-center justify-center border border-slate-200 dark:border-slate-800"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 min-h-[44px] min-w-[44px] flex items-center justify-center border border-slate-200 dark:border-slate-800"
-              aria-label="Open mobile navigation menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <X className="w-4 h-4" />
             </button>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile menu dropdown */}
-      {mobileMenuOpen && (
-        <div className="sm:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-3 pb-5 space-y-2.5 shadow-xl">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 min-h-[44px] flex items-center gap-2"
-            >
-              {link.icon && <link.icon className="w-4 h-4 text-cyan-600" />}
-              {link.label}
-            </Link>
-          ))}
-          <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Language:</span>
-            <div className="flex gap-1">
-              {(["en", "hi", "mr"] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLanguage(l)}
-                  className={`px-3 py-1.5 text-xs rounded-lg min-h-[44px] ${
-                    language === l ? "bg-cyan-700 text-white font-bold" : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
-                  }`}
-                >
-                  {l === "en" ? "EN" : l === "hi" ? "हिन्दी" : "मराठी"}
-                </button>
-              ))}
-            </div>
-          </div>
-          <Link
-            href="/dashboard"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full mt-2 py-3 rounded-xl bg-cyan-700 text-white text-center font-bold block min-h-[44px] flex items-center justify-center shadow-soft"
-          >
-            Launch Parent Dashboard
-          </Link>
-        </div>
+        </aside>
       )}
+
+      {/* Main Navigation Bar */}
+      <nav
+        className={`w-full bg-background/95 backdrop-blur-md border-b border-border transition-all ${
+          scrolled ? "shadow-subtle" : ""
+        }`}
+        aria-label="Main Navigation"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo: gentle warm pediatric identity */}
+            <Link
+              href="/"
+              className="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary rounded-xl p-1"
+              aria-label="EarlySteps Home"
+            >
+              <div className="w-11 h-11 rounded-2xl bg-primary text-white flex items-center justify-center shadow-subtle group-hover:bg-primary-hover transition-colors">
+                <Heart className="w-6 h-6 fill-white/20 stroke-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl sm:text-2xl font-bold font-heading tracking-tight text-foreground">
+                  Early<span className="text-primary">Steps</span>
+                </span>
+                <span className="text-sm text-foreground-muted font-medium -mt-1">
+                  Pediatric Screening (12–48m)
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation Links (Max 5 items, strictly role-based) */}
+            <div className="hidden md:flex items-center gap-6">
+              <div className="flex items-center gap-1">
+                {linksToRender.map((link) => {
+                  const active = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`px-3.5 py-2 rounded-xl text-base font-medium transition-colors min-h-[44px] flex items-center ${
+                        active
+                          ? "text-primary bg-primary-soft font-bold"
+                          : "text-foreground-muted hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Utility Actions: Language Dropdown + Theme Toggle + CTA */}
+              <div className="flex items-center gap-3 pl-2 border-l border-border">
+                {/* Single Language Dropdown */}
+                <div className="relative" ref={langDropdownRef}>
+                  <button
+                    type="button"
+                    onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-border bg-card hover:bg-muted text-sm font-semibold text-foreground min-h-[44px] focus-visible:ring-2 focus-visible:ring-primary"
+                    aria-label={`Current language: ${activeLangObj.label}. Click to switch.`}
+                    aria-expanded={langDropdownOpen}
+                  >
+                    <Globe className="w-4 h-4 text-primary" />
+                    <span>{activeLangObj.short}</span>
+                    <ChevronDown className={`w-3.5 h-3.5 text-foreground-muted transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} />
+                  </button>
+
+                  {langDropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-36 rounded-xl bg-card border border-border shadow-card py-1.5 z-50">
+                      {languages.map((l) => (
+                        <button
+                          key={l.code}
+                          type="button"
+                          onClick={() => {
+                            setLanguage(l.code);
+                            setLangDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3.5 py-2 text-sm flex items-center justify-between hover:bg-muted transition-colors ${
+                            language === l.code ? "font-bold text-primary bg-primary-soft" : "text-foreground font-medium"
+                          }`}
+                        >
+                          <span>{l.label}</span>
+                          {language === l.code && <Check className="w-4 h-4 text-primary" />}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Dark Mode Toggle */}
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="p-2.5 rounded-xl border border-border bg-card hover:bg-muted text-foreground-muted hover:text-foreground min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors focus-visible:ring-2 focus-visible:ring-primary"
+                  aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+                >
+                  {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-primary" />}
+                </button>
+
+                {/* Auth CTA or User Menu */}
+                {isAuth ? (
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href="/dashboard"
+                      className="px-4 py-2.5 rounded-xl bg-primary-soft text-primary hover:bg-primary/20 text-sm font-bold min-h-[44px] flex items-center gap-1.5 transition-colors"
+                    >
+                      <User className="w-4 h-4" />
+                      <span className="max-w-[120px] truncate">{currentUser?.name?.split(" ")[0] || "Account"}</span>
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="p-2.5 rounded-xl text-foreground-muted hover:text-risk-high hover:bg-muted min-h-[44px] min-w-[44px] flex items-center justify-center"
+                      title="Log out"
+                      aria-label="Log out"
+                    >
+                      <LogOut className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/screening"
+                    className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-base font-bold shadow-subtle hover:shadow-card transition-all min-h-[48px] flex items-center justify-center"
+                  >
+                    Start screening
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Mobile Menu Hamburger */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2.5 rounded-xl border border-border bg-card text-foreground min-h-[48px] min-w-[48px] flex items-center justify-center"
+                aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Full-Screen Sheet Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden fixed inset-x-0 top-auto bottom-0 h-[calc(100vh-5rem)] bg-background border-t border-border p-6 flex flex-col justify-between overflow-y-auto z-50">
+            <div className="space-y-4">
+              <span className="text-xs font-bold text-foreground-muted uppercase tracking-wider block">
+                {isAuth ? `Logged In (${role})` : "Explore EarlySteps"}
+              </span>
+              <div className="flex flex-col space-y-1">
+                {linksToRender.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-4 py-3.5 rounded-xl text-lg font-semibold text-foreground hover:bg-muted transition-colors min-h-[48px] flex items-center"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Language Selection in Mobile Sheet */}
+              <div className="pt-4 border-t border-border">
+                <span className="text-xs font-bold text-foreground-muted uppercase tracking-wider block mb-2">
+                  Language / भाषा
+                </span>
+                <div className="grid grid-cols-3 gap-2">
+                  {languages.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => {
+                        setLanguage(l.code);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`py-3 px-2 rounded-xl text-sm font-bold border min-h-[48px] ${
+                        language === l.code
+                          ? "bg-primary text-white border-primary"
+                          : "bg-card text-foreground border-border"
+                      }`}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-6 border-t border-border space-y-3">
+              {isAuth ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-3.5 rounded-xl border border-border text-foreground font-bold text-base min-h-[48px]"
+                >
+                  Log out
+                </button>
+              ) : (
+                <>
+                  <Link
+                    href="/screening"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full py-3.5 rounded-xl bg-primary text-white font-bold text-base text-center block shadow-card min-h-[48px]"
+                  >
+                    Start free screening
+                  </Link>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full py-3 rounded-xl border border-border text-foreground font-semibold text-sm text-center block min-h-[48px]"
+                  >
+                    Sign in to existing profile
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </nav>
     </header>
   );
 }
