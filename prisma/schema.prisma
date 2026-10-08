@@ -1,0 +1,114 @@
+// EarlySteps Prisma Schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  email        String      @unique
+  name         String
+  passwordHash String?
+  role         String      @default("PARENT") // PARENT, CLINICIAN, ADMIN
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  consents     Consent[]
+  children     Child[]
+  screenings   Screening[]
+  auditLogs    AuditLog[]
+}
+
+model Consent {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  version       String   @default("1.0.0-dpdp2023")
+  agreedToDPDP  Boolean  @default(true)
+  termsAccepted Boolean  @default(true)
+  ipAddress     String?
+  userAgent     String?
+  consentedAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Child {
+  id               String      @id @default(cuid())
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name             String // Encrypted or plain in dev
+  dateOfBirth      DateTime
+  gender           String? // "male", "female", "prefer_not_to_say"
+  isPremature      Boolean     @default(false)
+  gestationalWeeks Int?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  screenings       Screening[]
+
+  @@index([userId])
+}
+
+model Screening {
+  id              String    @id @default(cuid())
+  childId         String
+  child           Child     @relation(fields: [childId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questionnaireId String // e.g. "m-chat-r-16-30"
+  status          String    @default("IN_PROGRESS") // "IN_PROGRESS", "COMPLETED"
+  totalScore      Int       @default(0)
+  riskLevel       String? // "LOW", "MEDIUM", "HIGH"
+  clinicianNotes  String?
+  createdAt       DateTime  @default(now())
+  completedAt     DateTime?
+  answers         Answer[]
+  result          Result?
+
+  @@index([childId])
+  @@index([userId])
+}
+
+model Answer {
+  id          String    @id @default(cuid())
+  screeningId String
+  screening   Screening @relation(fields: [screeningId], references: [id], onDelete: Cascade)
+  questionId  Int
+  response    String // "YES" or "NO"
+  scoreValue  Int       @default(0) // 1 if at risk, 0 otherwise
+  createdAt   DateTime  @default(now())
+
+  @@unique([screeningId, questionId])
+  @@index([screeningId])
+}
+
+model Result {
+  id                  String    @id @default(cuid())
+  screeningId         String    @unique
+  screening           Screening @relation(fields: [screeningId], references: [id], onDelete: Cascade)
+  riskLevel           String // "LOW", "MEDIUM", "HIGH"
+  score               Int
+  summary             String
+  recommendationsJson String // JSON array of string recommendations
+  generatedAt         DateTime  @default(now())
+
+  @@index([screeningId])
+}
+
+model AuditLog {
+  id           String   @id @default(cuid())
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action       String // "CONSENT_GIVEN", "CHILD_CREATED", "SCREENING_SUBMITTED", "DATA_ACCESSED", "DATA_DELETED", "DATA_EXPORTED"
+  resourceType String // "User", "Child", "Screening", "Consent"
+  resourceId   String?
+  details      String?
+  ipAddress    String?
+  timestamp    DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+}

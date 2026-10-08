@@ -1,0 +1,77 @@
+{
+  "id": "screening-12-15",
+  "name": "Infant Developmental Milestones Screener (12-15 months)",
+  "shortName": "Screening (12-15m)",
+  "version": "0.1.0-draft",
+  "isPlaceholder": true,
+  "clinicianBanner": "Requires clinician-approved content: Clinical questionnaire for 12-15 months is currently undergoing ethical and pediatric review. Please consult your pediatrician directly for assessments under 16 months.",
+  "targetAgeBand": {
+    "minMonths": 12,
+    "maxMonths": 15,
+    "label": "12 to 15 months"
+  },
+  "citation": {
+    "title": "Pediatric Developmental Surveillance Guidelines (Draft Placeholder)",
+    "authors": "Clinical Committee in Review",
+    "journal": "In development",
+    "copyrightNotice": "Clinical evaluation pending approval",
+    "clinicalDisclaimer": "SCREENING TOOL ONLY: NOT A DIAGNOSIS. Clinical content for ages 12-15 months is pending formal validation. Please consult a qualified pediatrician."
+  },
+  "riskThresholds": [
+    {
+      "level": "LOW",
+      "label": "Low likelihood of needing further evaluation",
+      "minScore": 0,
+      "maxScore": 1,
+      "color": "emerald",
+      "badge": "Low Risk",
+      "summary": "Placeholder category for infant developmental milestones.",
+      "recommendedActions": [
+        "Continue tracking infant milestones.",
+        "Attend regular 12-month and 15-month pediatric checkups."
+      ]
+    },
+    {
+      "level": "MEDIUM",
+      "label": "Medium likelihood of needing further evaluation",
+      "minScore": 2,
+      "maxScore": 3,
+      "color": "amber",
+      "badge": "Medium Risk",
+      "summary": "Placeholder category for infant milestone follow-up.",
+      "recommendedActions": [
+        "Consult your pediatrician for structured early observation."
+      ]
+    },
+    {
+      "level": "HIGH",
+      "label": "High likelihood of needing further evaluation",
+      "minScore": 4,
+      "maxScore": 10,
+      "color": "rose",
+      "badge": "High Risk",
+      "summary": "Placeholder category for early developmental support.",
+      "recommendedActions": [
+        "Seek immediate pediatric evaluation for developmental milestones."
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "text": "TODO: [Clinician review pending] Does your baby turn their head toward your voice when you call them?",
+      "exampleText": "Example pending clinical advisory board approval.",
+      "riskAnswer": "NO",
+      "category": "Auditory & Social Attention",
+      "videoPlaceholder": "placeholder.mp4"
+    },
+    {
+      "id": 2,
+      "text": "TODO: [Clinician review pending] Does your baby make eye contact during feeding or play?",
+      "exampleText": "Example pending clinical advisory board approval.",
+      "riskAnswer": "NO",
+      "category": "Eye Contact",
+      "videoPlaceholder": "placeholder.mp4"
+    }
+  ]
+}

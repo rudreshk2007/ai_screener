@@ -1,0 +1,484 @@
+{
+  "users": [
+    {
+      "id": "usr_muzmgmib_fk1wai",
+      "email": "parent@earlysteps.org",
+      "name": "Priya Sharma",
+      "passwordHash": "Parent@123",
+      "role": "PARENT",
+      "createdAt": "2026-10-08T14:18:43.571Z",
+      "updatedAt": "2026-10-08T14:18:43.571Z"
+    },
+    {
+      "id": "usr_muzmgmic_a2xw43",
+      "email": "doctor@earlysteps.org",
+      "name": "Dr. Ananya Roy, MD",
+      "passwordHash": "Doctor@123",
+      "role": "CLINICIAN",
+      "createdAt": "2026-10-08T14:18:43.572Z",
+      "updatedAt": "2026-10-08T14:18:43.572Z"
+    },
+    {
+      "id": "usr_muzmgmic_ffb6ay",
+      "email": "admin@earlysteps.org",
+      "name": "System Admin",
+      "passwordHash": "Admin@123",
+      "role": "ADMIN",
+      "createdAt": "2026-10-08T14:18:43.572Z",
+      "updatedAt": "2026-10-08T14:18:43.572Z"
+    }
+  ],
+  "consents": [
+    {
+      "id": "cns_muzmgmib_ve1373",
+      "userId": "usr_muzmgmib_fk1wai",
+      "version": "1.0.0-dpdp2023",
+      "agreedToDPDP": true,
+      "termsAccepted": true,
+      "ipAddress": "127.0.0.1",
+      "userAgent": "EarlySteps Seeder / Chrome 124",
+      "consentedAt": "2026-10-08T14:18:43.571Z"
+    }
+  ],
+  "children": [
+    {
+      "id": "chd_muzmgmic_kbdg0j",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Aarav",
+      "dateOfBirth": "2025-08-08T14:18:43.572Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T14:18:43.572Z",
+      "updatedAt": "2026-10-08T14:18:43.572Z"
+    },
+    {
+      "id": "chd_muzmgmid_qnago8",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Meera",
+      "dateOfBirth": "2024-10-08T14:18:43.572Z",
+      "gender": "female",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T14:18:43.573Z",
+      "updatedAt": "2026-10-08T14:18:43.573Z"
+    },
+    {
+      "id": "chd_muzmgmid_vaf3pj",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Kabir",
+      "dateOfBirth": "2023-06-08T14:18:43.572Z",
+      "gender": "male",
+      "isPremature": true,
+      "gestationalWeeks": 34,
+      "createdAt": "2026-10-08T14:18:43.573Z",
+      "updatedAt": "2026-10-08T14:18:43.573Z"
+    }
+  ],
+  "screenings": [
+    {
+      "id": "scr_muzmgmie_dc8w8l",
+      "childId": "chd_muzmgmid_qnago8",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 4,
+      "riskLevel": "MEDIUM",
+      "clinicianNotes": "Parent reports mild joint attention delay and sound reactivity. Follow-up consultation scheduled.",
+      "createdAt": "2026-10-08T14:18:43.574Z",
+      "completedAt": "2026-10-08T14:18:43.573Z"
+    },
+    {
+      "id": "scr_muzmv925_q0hqna",
+      "childId": "chd_muzmgmid_qnago8",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T14:30:05.981Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muzmv926_my7zt3",
+      "childId": "chd_muzmgmid_qnago8",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 9,
+      "riskLevel": "HIGH",
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T14:30:05.982Z",
+      "completedAt": "2026-10-08T14:30:26.324Z"
+    }
+  ],
+  "answers": [
+    {
+      "id": "ans_muzmgmie_i2l9l5",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.574Z"
+    },
+    {
+      "id": "ans_muzmgmie_dkj1uf",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 2,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:18:43.574Z"
+    },
+    {
+      "id": "ans_muzmgmif_ljm0mm",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 3,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.575Z"
+    },
+    {
+      "id": "ans_muzmgmif_ur19m2",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 4,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.575Z"
+    },
+    {
+      "id": "ans_muzmgmif_cnyrx2",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 5,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:18:43.575Z"
+    },
+    {
+      "id": "ans_muzmgmig_zlgb18",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 6,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:18:43.576Z"
+    },
+    {
+      "id": "ans_muzmgmig_4arbrd",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 7,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.576Z"
+    },
+    {
+      "id": "ans_muzmgmig_7gwifi",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.576Z"
+    },
+    {
+      "id": "ans_muzmgmig_4vw13y",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 9,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.576Z"
+    },
+    {
+      "id": "ans_muzmgmih_kj8921",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.577Z"
+    },
+    {
+      "id": "ans_muzmgmih_elb40y",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 11,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.577Z"
+    },
+    {
+      "id": "ans_muzmgmih_yr9774",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 12,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:18:43.577Z"
+    },
+    {
+      "id": "ans_muzmgmii_q8ahxi",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 13,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.578Z"
+    },
+    {
+      "id": "ans_muzmgmii_e6fdxs",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.578Z"
+    },
+    {
+      "id": "ans_muzmgmii_qmeisw",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 15,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.578Z"
+    },
+    {
+      "id": "ans_muzmgmii_1hgd3m",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.578Z"
+    },
+    {
+      "id": "ans_muzmgmij_3ivym1",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.579Z"
+    },
+    {
+      "id": "ans_muzmgmij_ytjl4a",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.579Z"
+    },
+    {
+      "id": "ans_muzmgmij_6jnc7c",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.579Z"
+    },
+    {
+      "id": "ans_muzmgmij_az26sf",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "questionId": 20,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:18:43.579Z"
+    },
+    {
+      "id": "ans_muzmvb7g_auorai",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:08.764Z"
+    },
+    {
+      "id": "ans_muzmvclz_8v5xt2",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 2,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:10.583Z"
+    },
+    {
+      "id": "ans_muzmvdku_9za80l",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 3,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:11.838Z"
+    },
+    {
+      "id": "ans_muzmvecg_iulnj4",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 4,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:12.832Z"
+    },
+    {
+      "id": "ans_muzmvf7t_ukiqvr",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 5,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:13.961Z"
+    },
+    {
+      "id": "ans_muzmvful_titlva",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 6,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:14.781Z"
+    },
+    {
+      "id": "ans_muzmvgk3_oxlqsq",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 7,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:15.699Z"
+    },
+    {
+      "id": "ans_muzmvhfy_faj2j8",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:16.846Z"
+    },
+    {
+      "id": "ans_muzmvi6e_2rhksa",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 9,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:17.798Z"
+    },
+    {
+      "id": "ans_muzmvimf_hzwkgl",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:18.375Z"
+    },
+    {
+      "id": "ans_muzmvjei_ut783c",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 11,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:19.386Z"
+    },
+    {
+      "id": "ans_muzmvjz0_gwd2fm",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 12,
+      "response": "YES",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:20.124Z"
+    },
+    {
+      "id": "ans_muzmvkib_3v6hsd",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 13,
+      "response": "NO",
+      "scoreValue": 1,
+      "createdAt": "2026-10-08T14:30:20.819Z"
+    },
+    {
+      "id": "ans_muzmvlh5_v4h5s4",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:22.073Z"
+    },
+    {
+      "id": "ans_muzmvm0f_wi990u",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:22.767Z"
+    },
+    {
+      "id": "ans_muzmvmbr_pi3sqd",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:23.175Z"
+    },
+    {
+      "id": "ans_muzmvmn5_ztthas",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:23.585Z"
+    },
+    {
+      "id": "ans_muzmvmx5_p4121f",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:30:23.945Z"
+    }
+  ],
+  "results": [
+    {
+      "id": "res_muzmgmik_ep3y0q",
+      "screeningId": "scr_muzmgmie_dc8w8l",
+      "riskLevel": "MEDIUM",
+      "score": 4,
+      "summary": "Your responses indicate some developmental milestones may benefit from clinical follow-up.",
+      "recommendationsJson": "[\"Schedule an appointment with your pediatrician or developmental specialist for a structured follow-up interview.\",\"Download and take the PDF report generated by this screening to your doctor's visit.\",\"Observe your child's responses to name calls and pointing in various calm home settings.\"]",
+      "generatedAt": "2026-10-08T14:18:43.580Z"
+    },
+    {
+      "id": "res_muzmvor9_dpxmmv",
+      "screeningId": "scr_muzmv926_my7zt3",
+      "riskLevel": "HIGH",
+      "score": 9,
+      "summary": "Your responses highlight key areas in social communication and sensory processing that warrant prompt professional evaluation.",
+      "recommendationsJson": "[\"Seek a prompt referral to a pediatric neurologist, developmental pediatrician, or child psychologist.\",\"Early intervention services can begin even before formal diagnosis; early support offers significant benefits.\",\"Take this comprehensive screening report to your clinical consultation.\"]",
+      "generatedAt": "2026-10-08T14:30:26.325Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "log_muzmgmik_uld2aj",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DEMO_SEED_COMPLETED",
+      "resourceType": "System",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Seed script populated demo parent and 3 children (14m, 24m, 40m)",
+      "ipAddress": "127.0.0.1",
+      "timestamp": "2026-10-08T14:18:43.580Z"
+    },
+    {
+      "id": "log_muzmv927_7xwrr1",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzmv925_q0hqna",
+      "details": "Started m-chat-r-16-30 for child age 23m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:30:05.983Z"
+    },
+    {
+      "id": "log_muzmv928_1e3tyf",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzmv926_my7zt3",
+      "details": "Started m-chat-r-16-30 for child age 23m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:30:05.984Z"
+    },
+    {
+      "id": "log_muzmvor9_5mk1c2",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_SUBMITTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muzmv926_my7zt3",
+      "details": "Completed with total score 9 -> HIGH",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:30:26.325Z"
+    }
+  ]
+}

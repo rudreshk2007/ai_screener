@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --accent: #059669;
+  --accent-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --background: #0b1120;
+  --foreground: #f1f5f9;
+  --card: #131d31;
+  --card-foreground: #f1f5f9;
+  --primary: #06b6d4;
+  --primary-foreground: #081a24;
+  --accent: #10b981;
+  --accent-foreground: #032115;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #24344d;
+}
+
+/* Sensory-friendly calm transitions & reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Accessible tap targets for all interactive elements */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Focus visible styles for keyboard accessibility */
+:focus-visible {
+  outline: 3px solid #0891b2;
+  outline-offset: 2px;
+}

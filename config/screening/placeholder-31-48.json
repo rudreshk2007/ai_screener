@@ -1,0 +1,77 @@
+{
+  "id": "screening-31-48",
+  "name": "Preschool Developmental & Social Screening (31-48 months)",
+  "shortName": "Screening (31-48m)",
+  "version": "0.1.0-draft",
+  "isPlaceholder": true,
+  "clinicianBanner": "Requires clinician-approved content: Clinical questionnaire for 31-48 months is currently undergoing ethical and pediatric review. For children aged 31-48 months, please consult your developmental specialist.",
+  "targetAgeBand": {
+    "minMonths": 31,
+    "maxMonths": 48,
+    "label": "31 to 48 months"
+  },
+  "citation": {
+    "title": "Preschool Social-Communication Surveillance Guidelines (Draft Placeholder)",
+    "authors": "Clinical Committee in Review",
+    "journal": "In development",
+    "copyrightNotice": "Clinical evaluation pending approval",
+    "clinicalDisclaimer": "SCREENING TOOL ONLY: NOT A DIAGNOSIS. Clinical content for ages 31-48 months is pending formal validation. Please consult a qualified pediatrician."
+  },
+  "riskThresholds": [
+    {
+      "level": "LOW",
+      "label": "Low likelihood of needing further evaluation",
+      "minScore": 0,
+      "maxScore": 1,
+      "color": "emerald",
+      "badge": "Low Risk",
+      "summary": "Placeholder category for preschool social communication milestones.",
+      "recommendedActions": [
+        "Continue tracking preschool peer play and language development.",
+        "Maintain routine annual developmental assessments."
+      ]
+    },
+    {
+      "level": "MEDIUM",
+      "label": "Medium likelihood of needing further evaluation",
+      "minScore": 2,
+      "maxScore": 3,
+      "color": "amber",
+      "badge": "Medium Risk",
+      "summary": "Placeholder category for preschool developmental evaluation.",
+      "recommendedActions": [
+        "Consult your preschool educator and pediatrician."
+      ]
+    },
+    {
+      "level": "HIGH",
+      "label": "High likelihood of needing further evaluation",
+      "minScore": 4,
+      "maxScore": 10,
+      "color": "rose",
+      "badge": "High Risk",
+      "summary": "Placeholder category for specialist preschool evaluation.",
+      "recommendedActions": [
+        "Referral to child psychologist or developmental pediatrician recommended."
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "text": "TODO: [Clinician review pending] Does your child engage in interactive group play with other children?",
+      "exampleText": "Example pending clinical advisory board approval.",
+      "riskAnswer": "NO",
+      "category": "Interactive Peer Play",
+      "videoPlaceholder": "placeholder.mp4"
+    },
+    {
+      "id": 2,
+      "text": "TODO: [Clinician review pending] Does your child hold 2-way conversations using 3 or more words?",
+      "exampleText": "Example pending clinical advisory board approval.",
+      "riskAnswer": "NO",
+      "category": "Conversational Language",
+      "videoPlaceholder": "placeholder.mp4"
+    }
+  ]
+}
