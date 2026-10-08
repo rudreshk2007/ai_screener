@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("EarlySteps End-to-End User Journey", () => {
+  test.describe.configure({ mode: "serial" });
   const testUserEmail = `parent_${Date.now()}@earlysteps.org`;
 
   test("1. Landing page display & disclaimer", async ({ page }) => {

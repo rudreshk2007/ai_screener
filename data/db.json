@@ -26,6 +26,15 @@
       "role": "ADMIN",
       "createdAt": "2026-10-08T14:18:43.572Z",
       "updatedAt": "2026-10-08T14:18:43.572Z"
+    },
+    {
+      "id": "usr_muznqz0s_y23f6u",
+      "email": "parent_1791471285150@earlysteps.org",
+      "name": "Rohan Verma",
+      "passwordHash": "Password@123",
+      "role": "PARENT",
+      "createdAt": "2026-10-08T14:54:45.964Z",
+      "updatedAt": "2026-10-08T14:54:45.964Z"
     }
   ],
   "consents": [
@@ -38,6 +47,16 @@
       "ipAddress": "127.0.0.1",
       "userAgent": "EarlySteps Seeder / Chrome 124",
       "consentedAt": "2026-10-08T14:18:43.571Z"
+    },
+    {
+      "id": "cns_muznqz0s_e7hsv4",
+      "userId": "usr_muznqz0s_y23f6u",
+      "version": "1.0.0-dpdp2023",
+      "agreedToDPDP": true,
+      "termsAccepted": true,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+      "consentedAt": "2026-10-08T14:54:45.964Z"
     }
   ],
   "children": [
@@ -73,6 +92,28 @@
       "gestationalWeeks": 34,
       "createdAt": "2026-10-08T14:18:43.573Z",
       "updatedAt": "2026-10-08T14:18:43.573Z"
+    },
+    {
+      "id": "chd_muznqzpd_n7heyk",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Vivaan",
+      "dateOfBirth": "2025-02-08T00:00:00.000Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T14:54:46.849Z",
+      "updatedAt": "2026-10-08T14:54:46.849Z"
+    },
+    {
+      "id": "chd_muznvf81_ztce84",
+      "userId": "usr_muzmgmib_fk1wai",
+      "name": "Vivaan",
+      "dateOfBirth": "2025-02-08T00:00:00.000Z",
+      "gender": "male",
+      "isPremature": false,
+      "gestationalWeeks": null,
+      "createdAt": "2026-10-08T14:58:13.585Z",
+      "updatedAt": "2026-10-08T14:58:13.585Z"
     }
   ],
   "screenings": [
@@ -111,6 +152,42 @@
       "clinicianNotes": null,
       "createdAt": "2026-10-08T14:30:05.982Z",
       "completedAt": "2026-10-08T14:30:26.324Z"
+    },
+    {
+      "id": "scr_muznr076_vfd7d3",
+      "childId": "chd_muznqzpd_n7heyk",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T14:54:47.490Z",
+      "completedAt": null
+    },
+    {
+      "id": "scr_muznvfl9_mxxqli",
+      "childId": "chd_muznvf81_ztce84",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "COMPLETED",
+      "totalScore": 0,
+      "riskLevel": "LOW",
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T14:58:14.061Z",
+      "completedAt": "2026-10-08T14:58:22.459Z"
+    },
+    {
+      "id": "scr_muznw8oa_z2tie3",
+      "childId": "chd_muznvf81_ztce84",
+      "userId": "usr_muzmgmib_fk1wai",
+      "questionnaireId": "m-chat-r-16-30",
+      "status": "IN_PROGRESS",
+      "totalScore": 0,
+      "riskLevel": null,
+      "clinicianNotes": null,
+      "createdAt": "2026-10-08T14:58:51.754Z",
+      "completedAt": null
     }
   ],
   "answers": [
@@ -417,6 +494,158 @@
       "response": "YES",
       "scoreValue": 0,
       "createdAt": "2026-10-08T14:30:23.945Z"
+    },
+    {
+      "id": "ans_muznvfr2_yl2r8q",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 1,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:14.270Z"
+    },
+    {
+      "id": "ans_muznvg24_zfextg",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 2,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:14.668Z"
+    },
+    {
+      "id": "ans_muznvgcz_reda5v",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 3,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:15.059Z"
+    },
+    {
+      "id": "ans_muznvgpx_onlvcw",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 4,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:15.525Z"
+    },
+    {
+      "id": "ans_muznvgzv_p5oz1w",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 5,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:15.883Z"
+    },
+    {
+      "id": "ans_muznvh9z_r5ydod",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 6,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:16.247Z"
+    },
+    {
+      "id": "ans_muznvhna_s9hz1x",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 7,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:16.726Z"
+    },
+    {
+      "id": "ans_muznvi07_uoz9cf",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 8,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:17.191Z"
+    },
+    {
+      "id": "ans_muznvics_xnjuyh",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 9,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:17.644Z"
+    },
+    {
+      "id": "ans_muznvip9_zvgmiv",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 10,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:18.093Z"
+    },
+    {
+      "id": "ans_muznvj1q_8v1oe9",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 11,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:18.542Z"
+    },
+    {
+      "id": "ans_muznvjbz_lchqe9",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 12,
+      "response": "NO",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:18.911Z"
+    },
+    {
+      "id": "ans_muznvjm6_nwhmsx",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 13,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:19.278Z"
+    },
+    {
+      "id": "ans_muznvjyn_272if0",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 14,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:19.727Z"
+    },
+    {
+      "id": "ans_muznvkbj_rq5mwt",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 15,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:20.191Z"
+    },
+    {
+      "id": "ans_muznvko2_6oeb6b",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 16,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:20.642Z"
+    },
+    {
+      "id": "ans_muznvl02_uekmeo",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 17,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:21.074Z"
+    },
+    {
+      "id": "ans_muznvlc5_a1hqji",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 18,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:21.509Z"
+    },
+    {
+      "id": "ans_muznvlp3_6450q3",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "questionId": 19,
+      "response": "YES",
+      "scoreValue": 0,
+      "createdAt": "2026-10-08T14:58:21.975Z"
     }
   ],
   "results": [
@@ -437,6 +666,15 @@
       "summary": "Your responses highlight key areas in social communication and sensory processing that warrant prompt professional evaluation.",
       "recommendationsJson": "[\"Seek a prompt referral to a pediatric neurologist, developmental pediatrician, or child psychologist.\",\"Early intervention services can begin even before formal diagnosis; early support offers significant benefits.\",\"Take this comprehensive screening report to your clinical consultation.\"]",
       "generatedAt": "2026-10-08T14:30:26.325Z"
+    },
+    {
+      "id": "res_muznvm2k_dji2sz",
+      "screeningId": "scr_muznvfl9_mxxqli",
+      "riskLevel": "LOW",
+      "score": 0,
+      "summary": "Your responses indicate typical developmental progress in social communication milestones.",
+      "recommendationsJson": "[\"If your child is under 24 months, screen again after their second birthday as developmental patterns continue to evolve.\",\"Continue tracking milestones using our developmental checklist.\",\"Share any observations or parental intuition with your pediatrician at your next well-child visit.\"]",
+      "generatedAt": "2026-10-08T14:58:22.460Z"
     }
   ],
   "auditLogs": [
@@ -479,6 +717,156 @@
       "details": "Completed with total score 9 -> HIGH",
       "ipAddress": null,
       "timestamp": "2026-10-08T14:30:26.325Z"
+    },
+    {
+      "id": "log_muznqz0t_dv0w13",
+      "userId": "usr_muznqz0s_y23f6u",
+      "action": "CONSENT_GIVEN",
+      "resourceType": "Consent",
+      "resourceId": "usr_muznqz0s_y23f6u",
+      "details": "Consent version 1.0.0-dpdp2023 accepted under DPDP Act 2023",
+      "ipAddress": "::1",
+      "timestamp": "2026-10-08T14:54:45.965Z"
+    },
+    {
+      "id": "log_muznqzpe_f0ehmh",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "CHILD_CREATED",
+      "resourceType": "Child",
+      "resourceId": "chd_muznqzpd_n7heyk",
+      "details": "Profile created for child with calculated age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:54:46.850Z"
+    },
+    {
+      "id": "log_muznr076_d9kyvo",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muznr076_vfd7d3",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:54:47.490Z"
+    },
+    {
+      "id": "log_muznr07b_9i0mos",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:54:47.495Z"
+    },
+    {
+      "id": "log_muznr59l_cnwbus",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:54:54.057Z"
+    },
+    {
+      "id": "log_muznvelh_1vfw7l",
+      "userId": "usr_muznvelg_0lktye",
+      "action": "CONSENT_GIVEN",
+      "resourceType": "Consent",
+      "resourceId": "usr_muznvelg_0lktye",
+      "details": "Consent version 1.0.0-dpdp2023 accepted under DPDP Act 2023",
+      "ipAddress": "::1",
+      "timestamp": "2026-10-08T14:58:12.773Z"
+    },
+    {
+      "id": "log_muznvf82_vdgwzv",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "CHILD_CREATED",
+      "resourceType": "Child",
+      "resourceId": "chd_muznvf81_ztce84",
+      "details": "Profile created for child with calculated age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:13.586Z"
+    },
+    {
+      "id": "log_muznvfl9_30c4n3",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muznvfl9_mxxqli",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:14.061Z"
+    },
+    {
+      "id": "log_muznvflp_imhtbj",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:14.077Z"
+    },
+    {
+      "id": "log_muznvm2k_ofo67y",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_SUBMITTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muznvfl9_mxxqli",
+      "details": "Completed with total score 0 -> LOW",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:22.460Z"
+    },
+    {
+      "id": "log_muznvmrj_pf2y3g",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:23.359Z"
+    },
+    {
+      "id": "log_muznvn8y_ihecco",
+      "userId": null,
+      "action": "DATA_DELETED",
+      "resourceType": "User",
+      "resourceId": "usr_muznvelg_0lktye",
+      "details": "Parent exercised DPDP Act 2023 Right to Erasure - all records cascaded and destroyed",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:23.986Z"
+    },
+    {
+      "id": "log_muznw8ob_fhan41",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "SCREENING_STARTED",
+      "resourceType": "Screening",
+      "resourceId": "scr_muznw8oa_z2tie3",
+      "details": "Started m-chat-r-16-30 for child age 19m",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:51.755Z"
+    },
+    {
+      "id": "log_muznw8ov_pculkd",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:51.775Z"
+    },
+    {
+      "id": "log_muznwdfk_hknpwl",
+      "userId": "usr_muzmgmib_fk1wai",
+      "action": "DATA_EXPORTED",
+      "resourceType": "User",
+      "resourceId": "usr_muzmgmib_fk1wai",
+      "details": "Parent exported full health records under DPDP Act 2023 Right to Portability",
+      "ipAddress": null,
+      "timestamp": "2026-10-08T14:58:57.920Z"
     }
   ]
 }
