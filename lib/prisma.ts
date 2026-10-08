@@ -1,9 +1,46 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 
-// File-backed persistent database file
-const DATA_DIR = path.join(process.cwd(), "data");
-const DB_FILE = path.join(DATA_DIR, "db.json");
+// Detect execution environment:
+// In Vercel and AWS Lambda, process.cwd() is read-only (/var/task).
+// Only /tmp is writable.
+function resolveDbPaths(): { dataDir: string; dbFile: string; bundledDbFile: string } {
+  const bundledDbFile = path.join(process.cwd(), "data", "db.json");
+
+  // 1. Explicit override via environment variable
+  if (process.env.DB_FILE_PATH) {
+    return {
+      dataDir: path.dirname(process.env.DB_FILE_PATH),
+      dbFile: process.env.DB_FILE_PATH,
+      bundledDbFile,
+    };
+  }
+
+  // 2. Serverless / Read-Only environment check (Vercel, AWS Lambda, Netlify, or /var/task)
+  const isServerless =
+    Boolean(process.env.VERCEL) ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME) ||
+    Boolean(process.env.NETLIFY) ||
+    process.cwd().startsWith("/var/task");
+
+  if (isServerless) {
+    const tmpDataDir = path.join(os.tmpdir(), "earlysteps-data");
+    return {
+      dataDir: tmpDataDir,
+      dbFile: path.join(tmpDataDir, "db.json"),
+      bundledDbFile,
+    };
+  }
+
+  // 3. Standard local development / persistent server environment
+  const localDataDir = path.join(process.cwd(), "data");
+  return {
+    dataDir: localDataDir,
+    dbFile: path.join(localDataDir, "db.json"),
+    bundledDbFile,
+  };
+}
 
 export interface UserModel {
   id: string;
@@ -97,49 +134,106 @@ function uid(prefix = "c"): string {
 
 class EarlyStepsDatabase {
   private data: DatabaseSchema;
+  private dataDir: string;
+  private dbFile: string;
+  private bundledDbFile: string;
+  private lastDiskMtime: number = 0;
 
   constructor() {
+    const paths = resolveDbPaths();
+    this.dataDir = paths.dataDir;
+    this.dbFile = paths.dbFile;
+    this.bundledDbFile = paths.bundledDbFile;
     this.data = this.load();
   }
 
+  private getInitialSchema(): DatabaseSchema {
+    return {
+      users: [],
+      consents: [],
+      children: [],
+      screenings: [],
+      answers: [],
+      results: [],
+      auditLogs: [],
+    };
+  }
+
   private load(): DatabaseSchema {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    if (!fs.existsSync(DB_FILE)) {
-      const initial: DatabaseSchema = {
-        users: [],
-        consents: [],
-        children: [],
-        screenings: [],
-        answers: [],
-        results: [],
-        auditLogs: [],
-      };
-      fs.writeFileSync(DB_FILE, JSON.stringify(initial, null, 2), "utf8");
-      return initial;
-    }
+    // 1. If active dbFile exists and was modified, read from disk
     try {
-      const content = fs.readFileSync(DB_FILE, "utf8");
-      return JSON.parse(content);
-    } catch {
-      return {
-        users: [],
-        consents: [],
-        children: [],
-        screenings: [],
-        answers: [],
-        results: [],
-        auditLogs: [],
-      };
+      if (fs.existsSync(this.dbFile)) {
+        const stat = fs.statSync(this.dbFile);
+        if (stat.mtimeMs > this.lastDiskMtime || !this.data) {
+          const content = fs.readFileSync(this.dbFile, "utf8");
+          this.data = JSON.parse(content);
+          this.lastDiskMtime = stat.mtimeMs;
+        }
+        return this.data;
+      }
+    } catch (err) {
+      console.warn("[EarlySteps DB] Failed reading active db file, checking fallbacks:", err);
     }
+
+    // 2. If memory already holds state, keep it (do not wipe out modifications if disk was read-only)
+    if (this.data) {
+      return this.data;
+    }
+
+    // 3. Fallback: Seed from bundled repository data/db.json (safe for read-only /var/task)
+    try {
+      if (fs.existsSync(this.bundledDbFile)) {
+        const content = fs.readFileSync(this.bundledDbFile, "utf8");
+        this.data = JSON.parse(content);
+        // Best-effort write to writable location
+        this.save();
+        return this.data;
+      }
+    } catch (err) {
+      console.warn("[EarlySteps DB] Failed reading bundled db.json template:", err);
+    }
+
+    // 4. Fallback to clean schema
+    this.data = this.getInitialSchema();
+    return this.data;
   }
 
   private save(): void {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    try {
+      if (!fs.existsSync(this.dataDir)) {
+        fs.mkdirSync(this.dataDir, { recursive: true });
+      }
+      fs.writeFileSync(this.dbFile, JSON.stringify(this.data, null, 2), "utf8");
+      try {
+        this.lastDiskMtime = fs.statSync(this.dbFile).mtimeMs;
+      } catch {
+        // ignore
+      }
+    } catch (err: any) {
+      // If writing failed due to EROFS (Read-only filesystem) and we haven't switched to os.tmpdir():
+      if ((err?.code === "EROFS" || err?.message?.includes("read-only")) && !this.dbFile.startsWith(os.tmpdir())) {
+        try {
+          const tmpDir = path.join(os.tmpdir(), "earlysteps-data");
+          if (!fs.existsSync(tmpDir)) {
+            fs.mkdirSync(tmpDir, { recursive: true });
+          }
+          this.dataDir = tmpDir;
+          this.dbFile = path.join(tmpDir, "db.json");
+          fs.writeFileSync(this.dbFile, JSON.stringify(this.data, null, 2), "utf8");
+          try {
+            this.lastDiskMtime = fs.statSync(this.dbFile).mtimeMs;
+          } catch {
+            // ignore
+          }
+          console.warn(`[EarlySteps DB] Read-only filesystem detected; successfully redirected to ${this.dbFile}`);
+          return;
+        } catch (fallbackErr) {
+          console.warn("[EarlySteps DB] Temporary storage write failed; maintaining state in-memory:", fallbackErr);
+        }
+      } else {
+        console.warn("[EarlySteps DB] Storage write failed; maintaining state in-memory:", err?.message || err);
+      }
     }
-    fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), "utf8");
   }
 
   public getRawData(): DatabaseSchema {
@@ -623,9 +717,7 @@ class EarlyStepsDatabase {
   }
 }
 
-// Global instance
+// Global singleton instance across all environments (including serverless Lambdas)
 const globalForDb = globalThis as unknown as { earlystepsDb?: EarlyStepsDatabase };
 export const prisma = globalForDb.earlystepsDb ?? new EarlyStepsDatabase();
-if (process.env.NODE_ENV !== "production") {
-  globalForDb.earlystepsDb = prisma;
-}
+globalForDb.earlystepsDb = prisma;
